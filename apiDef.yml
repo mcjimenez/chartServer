@@ -70,6 +70,41 @@ paths:
           description: Correct result
           schema:
             $ref: '#/definitions/HTML'
+  /charts/line:
+    get:
+      summary: Gets bar chart
+      x-implemented-in: getLine
+      description: It return a bar chart.
+      parameters:
+        - name: values
+          description: The values to represent on the chart
+          in: query
+          required: true
+          type: string
+        - name: labels
+          description: labels of the chart.
+          in: query
+          required: false
+          type: string
+        - name: lineLabels
+          description: line labels
+          in: query
+          required: false
+          type: string
+        - name: backgroundColor
+          description: background color
+          in: query
+          required: false
+          type: string
+      tags:
+        - Something
+      produces:
+        - text/html
+      responses:
+        '200':
+          description: Correct result
+          schema:
+            $ref: '#/definitions/HTML'
 definitions:
   SomeResult:
     type: object
