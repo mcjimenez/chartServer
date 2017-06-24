@@ -20,7 +20,7 @@ function GenericChart(aLogLevel) {
     if (!isValidType(type)) {
       return null;
     }
-
+    let legend = query.legend || '';
     let labels = chartUtils.getValuesAsArray(query.labels, ',');
     let backgroundColor = query.backgroundColor && chartUtils.getColors(query.backgroundColor) || [];
     let values = chartUtils.getValuesAsArray(query.values, ',');
@@ -40,7 +40,7 @@ function GenericChart(aLogLevel) {
           data:values
         }]
       },
-      options: chartUtils.getChartOptions()
+      options: chartUtils.getChartOptions(legend)
     };
 
     return data;

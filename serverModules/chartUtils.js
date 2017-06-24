@@ -8,6 +8,9 @@ function ChartUtils(aLogLevel) {
   const DEFAULT_COLOR_EVEN = 'rgba(255, 255, 255, 1)';
   const DEFAULT_COLOR_ODD = 'rgba(0, 0, 0, 1)';
 
+  const LEGEND_VALID_KEYS = ['display', 'position'];
+  const LEGEND_POSITION_DEFAULT = 'top';
+  const LEGEND_POSITIONS_VALID = ['left', 'top', 'bottom', 'right'];
 
   function notValidColor(color) {
     return isNaN(color) || color < 0 || color > 255;
@@ -57,11 +60,55 @@ function ChartUtils(aLogLevel) {
   }
 
   function getValuesAsArray(aValue, aSep) {
-    return aValue && aValue.split(aSep) || [];
+    return aValue && typeof aValue === 'string' && aValue.split(aSep) || [];
   }
 
-  function getChartOptions() {
-    return {
+  function getLegendPosition(aPosition) {
+    if (LEGEND_POSITIONS_VALID.includes(aPosition)) {
+      return aPosition;
+    } else {
+      return LEGEND_POSITION_DEFAULT;
+    }
+  }
+
+  function validLegendValue(aValues) {
+    let validateValue;
+    let value = aValues[1];
+
+    switch(aValues[0]) {
+      case 'display':
+        if (value.toLowerCase() === 'false') {
+          validateValue = false;
+        } else {
+          validateValue = true;
+        }
+        break;
+      case 'position':
+        validateValue = getLegendPosition(value);
+    }
+    return validateValue;
+  }
+
+  function getLegendOptions(aLegend) {
+    let legend = {};
+    if (!aLegend) {
+      return legend;
+    }
+    let legendKeysValues = getValuesAsArray(aLegend, ',');
+
+    for (let i = 0, l = legendKeysValues.length; i < l; i++) {
+      var values = getValuesAsArray(legendKeysValues[i], ':');
+      if (values && values.length === 2 && LEGEND_VALID_KEYS.includes(values[0])) {
+        legend[values[0]] = validLegendValue(values);
+      }
+    }
+    return legend;
+  }
+
+  function getChartOptions(aLegends) {
+    var legends = getLegendOptions(aLegends);
+
+    let options = {
       responsive: false,
       animation: false,
       width: 400,
@@ -72,8 +119,10 @@ function ChartUtils(aLogLevel) {
             beginAtZero: true
           }
         }]
-      }
+      },
+      legend: legends
     };
+    return options;
   }
 
   return {
