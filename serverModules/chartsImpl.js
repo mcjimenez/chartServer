@@ -12,8 +12,8 @@ module.exports = function(aLogLevel) {
     logger.log('req.user:', req.user, 'req.someData:', req.someData);
   }
 
-  var barCharAPI = new(require('./barChar'))(aLogLevel);
-  var lineCharAPI = new(require('./lineChar'))(aLogLevel);
+  var barChartAPI = new(require('./barChart'))(aLogLevel);
+  var lineChartAPI = new(require('./lineChart'))(aLogLevel);
 
   function setHeaders(aRes, length) {
     aRes.setHeader("Content-Type", "image/png");
@@ -37,10 +37,10 @@ module.exports = function(aLogLevel) {
 
   return {
     getBar: function getBar(aReq, aRes) {
-      return generate(aRes, barCharAPI.getData(aReq));
+      return generate(aRes, barChartAPI.getData(aReq));
     },
     getLine: function getLine(aReq, aRes) {
-      return generate(aRes, lineCharAPI.getData(aReq));
+      return generate(aRes, lineChartAPI.getData(aReq));
     }
   };
 

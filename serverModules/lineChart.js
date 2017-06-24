@@ -1,4 +1,4 @@
-function LineChar(aLogLevel) {
+function LineChart(aLogLevel) {
   'use strict';
 
   // http://<host>:<port>/charts/line?values=12,19,3,17,6,3,7;2,29,5,5,2,3,10&labels=apples,orange&lineLabels=M,T,W,T,F,S,S&backgroundColor=2551530000.4,1532550510.4
@@ -65,4 +65,4 @@ function LineChar(aLogLevel) {
   };
 }
 
-module.exports = LineChar;
+module.exports = LineChart;
