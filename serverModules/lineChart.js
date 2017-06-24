@@ -1,7 +1,7 @@
 function LineChart(aLogLevel) {
   'use strict';
 
-  // http://<host>:<port>/charts/line?values=12,19,3,17,6,3,7;2,29,5,5,2,3,10&labels=apples,orange&lineLabels=M,T,W,T,F,S,S&backgroundColor=2551530000.4,1532550510.4
+  // http://<host>:<port>/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=apples,orange&lineLabels=01,06,12,18,24,31,37&legend=display:true,position:bottom&disableCurve=1
 
   const Utils = require('swagger-boilerplate').Utils;
   const logger = new Utils.MultiLevelLogger('LineChar', aLogLevel);
@@ -16,8 +16,8 @@ function LineChart(aLogLevel) {
       values.push(chartUtils.getValuesAsArray(valuesAsStr[i], ','));
     }
     let labels = chartUtils.getValuesAsArray(query.labels, ',');
-    let backgroundColor = query.backgroundColor && chartUtils.getColors(query.backgroundColor) || [];
-
+    let backgroundColor = query.backgroundColor && chartUtils.getColors(query.backgroundColor, '') || [];
+    let borderColor = query.borderColor && chartUtils.getColors(query.borderColor, '') || [];
     let legend = query.legend || '';
     let disableCurve = query.disableCurve || false;
     if (!values || values.length <= 0) {
@@ -31,9 +31,14 @@ function LineChart(aLogLevel) {
     for (let i = 0, l = values.length; i < l; i++) {
       let aValue = {
         'label': labels[i],
-        'data': values[i],
-        'backgroundColor': backgroundColor[i]
+        'data': values[i]
       };
+      if (backgroundColor[i] !== '') {
+        aValue.backgroundColor = backgroundColor[i];
+      }
+      if (borderColor[i] !== '') {
+        aValue.borderColor = borderColor[i];
+      }
       dataSet.push(aValue);
     }
 
