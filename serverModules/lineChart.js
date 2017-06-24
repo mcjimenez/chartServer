@@ -18,6 +18,8 @@ function LineChart(aLogLevel) {
     let labels = chartUtils.getValuesAsArray(query.labels, ',');
     let backgroundColor = query.backgroundColor && chartUtils.getColors(query.backgroundColor) || [];
 
+    let legend = query.legend || '';
+
     if (!values || values.length <= 0) {
       return null;
     }
@@ -41,7 +43,7 @@ function LineChart(aLogLevel) {
         labels: lineLabels,
         datasets: dataSet
       },
-      options: chartUtils.getChartOptions()
+      options: chartUtils.getChartOptions(legend)
     };
     return data;
   }
