@@ -7,24 +7,10 @@ function LineChart(aLogLevel) {
   const logger = new Utils.MultiLevelLogger('LineChar', aLogLevel);
   const chartUtils = new(require('./chartUtils'))(aLogLevel);
 
-  const chartOptions = {
-    responsive: false,
-    animation: false,
-    width: 400,
-    height: 400,
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  };
-
   function getData(aReq) {
     let query = aReq.query || {};
-    let lineLabels = chartUtils.getValuesAsArray(query.lineLabels,',');
-    let valuesAsStr = chartUtils.getValuesAsArray(query.values,';');
+    let lineLabels = chartUtils.getValuesAsArray(query.lineLabels, ',');
+    let valuesAsStr = chartUtils.getValuesAsArray(query.values, ';');
     let values = [];
     for (let i = 0, l = valuesAsStr.length; i < l; i++) {
       values.push(chartUtils.getValuesAsArray(valuesAsStr[i], ','));
@@ -55,7 +41,7 @@ function LineChart(aLogLevel) {
         labels: lineLabels,
         datasets: dataSet
       },
-      options: chartOptions
+      options: chartUtils.getChartOptions()
     };
     return data;
   }

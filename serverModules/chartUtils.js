@@ -60,10 +60,27 @@ function ChartUtils(aLogLevel) {
     return aValue && aValue.split(aSep) || [];
   }
 
+  function getChartOptions() {
+    return {
+      responsive: false,
+      animation: false,
+      width: 400,
+      height: 400,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    };
+  }
+
   return {
     getColors: getColors,
     rectifyArrayLength: rectifyArrayLength,
-    getValuesAsArray: getValuesAsArray
+    getValuesAsArray: getValuesAsArray,
+    getChartOptions: getChartOptions
   };
 }
 

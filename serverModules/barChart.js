@@ -6,20 +6,6 @@ function BarChart(aLogLevel) {
 
   const chartUtils = new(require('./chartUtils'))(aLogLevel);
 
-  const chartOptions = {
-    responsive: false,
-    animation: false,
-    width: 400,
-    height: 400,
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
-    }
-  };
-
   function getData(aReq) {
     let query = aReq.query || {};
     let values = chartUtils.getValuesAsArray(query.values, ',');
@@ -51,7 +37,7 @@ function BarChart(aLogLevel) {
           borderWidth: borderWidth
         }]
       },
-      options: chartOptions
+      options: chartUtils.getChartOptions()
     };
 
     return data;
