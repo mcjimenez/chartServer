@@ -18,7 +18,6 @@ function LineChart(aLogLevel) {
     let labels = chartUtils.getValuesAsArray(query.labels, ',');
     let backgroundColor = query.backgroundColor && chartUtils.getColors(query.backgroundColor, '') || [];
     let borderColor = query.borderColor && chartUtils.getColors(query.borderColor, '') || [];
-    let legend = query.legend || '';
     let disableCurve = query.disableCurve || false;
     if (!values || values.length <= 0) {
       return null;
@@ -42,7 +41,7 @@ function LineChart(aLogLevel) {
       dataSet.push(aValue);
     }
 
-    var options = chartUtils.getChartOptions(legend);
+    var options = chartUtils.getChartOptions(query);
     if (disableCurve) {
       options.elements = {
         line: {

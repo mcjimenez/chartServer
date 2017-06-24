@@ -8,7 +8,6 @@ function BarChart(aLogLevel) {
 
   function getData(aReq) {
     let query = aReq.query || {};
-    let legend = query.legend || '';
     let values = chartUtils.getValuesAsArray(query.values, ',');
     let labels = chartUtils.getValuesAsArray(query.labels, ',');
     let barLabel = query.barLabel || '';
@@ -38,7 +37,7 @@ function BarChart(aLogLevel) {
           borderWidth: borderWidth
         }]
       },
-      options: chartUtils.getChartOptions(legend)
+      options: chartUtils.getChartOptions(query)
     };
 
     return data;

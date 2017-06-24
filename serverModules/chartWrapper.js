@@ -9,12 +9,16 @@ function ChartWrapper(aLogLevel) {
     ProcessExternalResources: true
   };
 
-  const HTML = '<html><body><div id="chart-div" style="font-size:12; width:800px; height:800px;"><canvas id="myChart" width="400" height="400"></canvas></div></body></html>';
+  let html = '<html><body><div id="chart-div" style="font-size:12; width:400px; height:400px;"><canvas id="myChart" width="400" height="400"></canvas></div></body></html>';
   const SCRIPTS = ['https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.js'];
+
+  function setSize(aWidth, aHeight) {
+    html = '<html><body><div id="chart-div" style="font-size:12; width:' + aWidth + 'px; height:' + aHeight + 'px;"><canvas id="myChart" width="' + aWidth + '" height="' + aHeight + '"></canvas></div></body></html>';
+  }
 
   function generate(options) {
     return new Promise((resolve, reject) => {
-        jsdom.env(HTML, SCRIPTS, function(err, window) {
+        jsdom.env(html, SCRIPTS, function(err, window) {
           try{
             var document = window.document;
             var Chart = window.Chart;
@@ -36,7 +40,8 @@ function ChartWrapper(aLogLevel) {
   }
 
   return {
-    generate: generate
+    generate: generate,
+    setSize: setSize
   };
 }
 
