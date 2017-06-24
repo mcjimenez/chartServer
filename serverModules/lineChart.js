@@ -19,7 +19,7 @@ function LineChart(aLogLevel) {
     let backgroundColor = query.backgroundColor && chartUtils.getColors(query.backgroundColor) || [];
 
     let legend = query.legend || '';
-
+    let disableCurve = query.disableCurve || false;
     if (!values || values.length <= 0) {
       return null;
     }
@@ -37,13 +37,22 @@ function LineChart(aLogLevel) {
       dataSet.push(aValue);
     }
 
+    var options = chartUtils.getChartOptions(legend);
+    if (disableCurve) {
+      options.elements = {
+        line: {
+          tension: 0 // disables bezier curves
+        }
+      };
+    }
+
     let data = {
       type: 'line',
       data: {
         labels: lineLabels,
         datasets: dataSet
       },
-      options: chartUtils.getChartOptions(legend)
+      options: options
     };
     return data;
   }
