@@ -1,0 +1,93 @@
+swagger: '2.0'
+info:
+  title: Generate charts API
+  description: >
+    API to generate charts.
+
+
+    Authorization: Some APIs are marked as requiring authorization. For those
+    APIs, the method defined will be invoked.
+  version: 1.0.0
+host: somethingsomething.herokuapp.com
+schemes:
+  - http
+basePath: /
+consumes:
+  - application/x-www-form-urlencoded
+  - application/json
+produces:
+  - application/json
+  - text/html
+x-implementation-module: ./serverModules/chartsImpl
+x-implementation-middleware:
+  - configReady
+x-implementation-final-middleware:
+  - errorHandler
+x-implementation-configuration: loadConfig
+paths:
+  /charts/bar:
+    get:
+      summary: Gets bar chart
+      x-implemented-in: getBar
+      description: It return a bar chart.
+      parameters:
+        - name: values
+          description: The values to represent on the chart
+          in: query
+          required: true
+          type: string
+        - name: labels
+          description: labels of the chart.
+          in: query
+          required: false
+          type: string
+        - name: barLabel
+          description: bar label
+          in: query
+          required: false
+          type: string
+        - name: backgroundColor
+          description: background color
+          in: query
+          required: false
+          type: string
+        - name: borderColor
+          description: border color
+          in: query
+          required: false
+          type: string
+        - name: borderWidth
+          description: border width
+          in: query
+          required: false
+          type: string
+      tags:
+        - Something
+      produces:
+        - text/html
+      responses:
+        '200':
+          description: Correct result
+          schema:
+            $ref: '#/definitions/HTML'
+definitions:
+  SomeResult:
+    type: object
+    properties:
+      id:
+        type: string
+      somethingElse:
+        type: string
+  HTML:
+    type: string
+    description: HTML document of the room
+  ErrorInfo:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
