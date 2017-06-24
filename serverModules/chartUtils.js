@@ -20,12 +20,17 @@ function ChartUtils(aLogLevel) {
     return isNaN(alpha) || alpha < 0 || alpha > 1;
   }
 
-  function getColors(value) {
+  function getColors(aValue, aDefaultColor) {
     let colors = [];
-    let strOfColors = value.split(',');
+    let strOfColors = aValue.split(',');
     for (let i = 0, l = strOfColors.length; i < l; i++) {
       let elem = strOfColors[i];
-      let defaultColor = i % 2 ? DEFAULT_COLOR_ODD : DEFAULT_COLOR_EVEN;
+      let defaultColor;
+      if (aDefaultColor !== undefined) {
+        defaultColor = aDefaultColor;
+      } else {
+        defaultColor = i % 2 ? DEFAULT_COLOR_ODD : DEFAULT_COLOR_EVEN;
+      }
       let aColor = [];
       if (elem.length < 10 || elem.length > 12) {
         colors.push(defaultColor);
