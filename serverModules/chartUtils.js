@@ -110,14 +110,18 @@ function ChartUtils(aLogLevel) {
     return legend;
   }
 
-  function getChartOptions(aLegends) {
-    var legends = getLegendOptions(aLegends);
+  function getChartOptions(aQuery) {
+    let queryLegend = aQuery.legend || '';
+
+    let width = aQuery.width || 400;
+    let height = aQuery.height || 400;
+    var legends = getLegendOptions(queryLegend);
 
     let options = {
       responsive: false,
       animation: false,
-      width: 400,
-      height: 400,
+      width: width,
+      height: height,
       scales: {
         yAxes: [{
           ticks: {

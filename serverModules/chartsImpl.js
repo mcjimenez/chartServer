@@ -6,6 +6,9 @@ module.exports = function(aLogLevel) {
 
   const charWrapper = new(require('./chartWrapper'))(aLogLevel);
 
+  const DEFAULT_WIDTH = 400;
+  const DEFAULT_HEIGHT = 400;
+
   function dumpReq(req) {
     logger.log('req.path:', req.path, 'params:', req.params);
     logger.log('query:', req.query, 'body:', req.body);
@@ -21,7 +24,12 @@ module.exports = function(aLogLevel) {
     aRes.setHeader("Content-Length", length);
   }
 
-  function generate(aRes, aData) {
+  function generate(aReq, aRes, aData) {
+    let query = aReq.query || {};
+    let width = query.width || DEFAULT_WIDTH;
+    let height = query.height || DEFAULT_HEIGHT;
+    charWrapper.setSize(width, height);
+
     if (!aData) {
       aRes.status(500).send("No values received");
     }
@@ -36,15 +44,28 @@ module.exports = function(aLogLevel) {
       });
   }
 
+  function normalize(aReq) {
+    let query = aReq.query || {};
+
+    if (!query.width) {
+      query.width = DEFAULT_WIDTH;
+    }
+    if (!query.height) {
+      query.height = DEFAULT_HEIGHT;
+    }
+    aReq.query = query;
+    return aReq;
+  }
+
   return {
     getBar: function getBar(aReq, aRes) {
-      return generate(aRes, barChartAPI.getData(aReq));
+      return generate(aReq, aRes, barChartAPI.getData(normalize(aReq)));
     },
     getLine: function getLine(aReq, aRes) {
-      return generate(aRes, lineChartAPI.getData(aReq));
+      return generate(aReq, aRes, lineChartAPI.getData(normalize(aReq)));
     },
     getGeneric: function getGeneric(aReq, aRes) {
-      return generate(aRes, genericAPI.getData(aReq));
+      return generate(aReq, aRes, genericAPI.getData(normalize(aReq)));
     }
   };
 
