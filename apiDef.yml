@@ -116,8 +116,38 @@ paths:
           in: query
           required: true
           type: string
-        - name: doughnutLabels
+        - name: labels
           description: doughnut labels
+          in: query
+          required: false
+          type: string
+        - name: backgroundColor
+          description: background color
+          in: query
+          required: false
+          type: string
+      tags:
+        - Something
+      produces:
+        - text/html
+      responses:
+        '200':
+          description: Correct result
+          schema:
+            $ref: '#/definitions/HTML'
+  /charts/pie:
+    get:
+      summary: Gets pie chart
+      x-implemented-in: getPie
+      description: It return a pie chart.
+      parameters:
+        - name: values
+          description: The values to represent on the chart
+          in: query
+          required: true
+          type: string
+        - name: labels
+          description: pie labels
           in: query
           required: false
           type: string

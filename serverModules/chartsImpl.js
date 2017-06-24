@@ -15,6 +15,7 @@ module.exports = function(aLogLevel) {
   var barChartAPI = new(require('./barChart'))(aLogLevel);
   var lineChartAPI = new(require('./lineChart'))(aLogLevel);
   var doughnutChartAPI = new(require('./doughnutChart'))(aLogLevel);
+  var pieChartAPI = new(require('./pieChart'))(aLogLevel);
 
   function setHeaders(aRes, length) {
     aRes.setHeader("Content-Type", "image/png");
@@ -45,6 +46,9 @@ module.exports = function(aLogLevel) {
     },
     getDoughnut: function getLine(aReq, aRes) {
       return generate(aRes, doughnutChartAPI.getData(aReq));
+    },
+    getPie: function getLine(aReq, aRes) {
+      return generate(aRes, pieChartAPI.getData(aReq));
     }
   };
 
