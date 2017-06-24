@@ -1,7 +1,7 @@
 function ChartWrapper(aLogLevel) {
   'use strict';
 
-  var Utils = require('swagger-boilerplate').Utils;
+  const Utils = require('swagger-boilerplate').Utils;
   const logger = new Utils.MultiLevelLogger('ChartWrapper', aLogLevel);
   const jsdom = require('jsdom');
   jsdom.defaultDocumentFeatures = {

@@ -1,8 +1,8 @@
 module.exports = function(aLogLevel) {
   'use strict';
 
-  var Utils = require('swagger-boilerplate').Utils;
-  var logger = new Utils.MultiLevelLogger('Charts Implementation', aLogLevel);
+  const Utils = require('swagger-boilerplate').Utils;
+  const logger = new Utils.MultiLevelLogger('Charts Implementation', aLogLevel);
 
   const charWrapper = new(require('./chartWrapper'))(aLogLevel);
 
@@ -12,10 +12,9 @@ module.exports = function(aLogLevel) {
     logger.log('req.user:', req.user, 'req.someData:', req.someData);
   }
 
-  var barChartAPI = new(require('./barChart'))(aLogLevel);
-  var lineChartAPI = new(require('./lineChart'))(aLogLevel);
-  var doughnutChartAPI = new(require('./doughnutChart'))(aLogLevel);
-  var pieChartAPI = new(require('./pieChart'))(aLogLevel);
+  const barChartAPI = new(require('./barChart'))(aLogLevel);
+  const lineChartAPI = new(require('./lineChart'))(aLogLevel);
+  const genericAPI = new(require('./genericChart'))(aLogLevel);
 
   function setHeaders(aRes, length) {
     aRes.setHeader("Content-Type", "image/png");
@@ -44,11 +43,8 @@ module.exports = function(aLogLevel) {
     getLine: function getLine(aReq, aRes) {
       return generate(aRes, lineChartAPI.getData(aReq));
     },
-    getDoughnut: function getLine(aReq, aRes) {
-      return generate(aRes, doughnutChartAPI.getData(aReq));
-    },
-    getPie: function getLine(aReq, aRes) {
-      return generate(aRes, pieChartAPI.getData(aReq));
+    getGeneric: function getGeneric(aReq, aRes) {
+      return generate(aRes, genericAPI.getData(aReq));
     }
   };
 
