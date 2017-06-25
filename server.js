@@ -5,7 +5,7 @@ var swaggerServer =
    apiFile: './apiDef.yml',
    modulePath: __dirname + '/',
    appName: 'Chart Module Implementation',
-   serverPort: 8126
+   serverPort: process.env.PORT || 8126
  });
 
 swaggerServer.start();
