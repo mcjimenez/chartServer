@@ -2,12 +2,24 @@
   "name": "chartserver",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "",
+  "engines": {
+    "node": "6.11.x",
+    "npm": "3.10.x"
   },
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcjimenez/chartServer"
+  },
+  "author": "Carmen J. Cabezas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mcjimenez/chartServer/issues"
+  },
   "dependencies": {
     "canvas": "1.6.*",
     "chart": "<=2.5.*",
