@@ -45,7 +45,8 @@ The aspect and values of the chart is passed on the url as parameters.
 All graphics can especify the parameters:
   - width: Width of the image
   - height: Height of the image
-  - legend: If you want that the labels of the graphics will be shown and the position
+  - legend: If you want that the labels of the graphics will be shown and the position.
+
     legend=[display:[true|false],][position:[top|right|bottom|left]]
 
 The colours are especified as RGB and Aplha in decimal value of three character (if the number is
@@ -56,8 +57,12 @@ For example:
 
 ### Line Chart
 
+URL: https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20mounth,Minutes%20this%20mounth&lineLabels=01,06,12,18,24,31,37&legend=display:true,position:bottom&disableCurve=1&width=700&heigth=400
+
 <img src="https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20mounth,Minutes%20this%20mounth&lineLabels=01,06,12,18,24,31,37&legend=display:true,position:bottom&disableCurve=1&width=700&heigth=400" alt="Line chart">
 
+- URL:
+  - /charts/line
 - Parameters:
   - backgroundColor: Colour under the line, if you don't want fill colour especify whatever colour with an alpha of 0.0. You have to specify as many colours as chart you are going to generate, this colour should be separated with commas ','
   - borderColor: Colour of the line that link the dots. You have to especify as colours (comma ',' separated) as graphics you are going to generate
@@ -65,7 +70,25 @@ For example:
   - labes: Label of each graphics (comma separate)
   - values: Values of the graphics. If you want more than one graphics separate the values of one graphic with comma and the values of one graphic from other with semicolon ';'
   - lineLabels: Label of the abscissa axis
-  - disableCurve: If this parameter is included (doesn't matter its value) the graphics will be shown without curve in the values
+  - disableCurve: If this parameter is included (doesn't matter its value) the graphics will be shown without curve in the values.
+
+### Bar Chart
+
+URL: https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%20A,op.%20B,op.%20C,op.%20D,op.%20E,op.%20F&barLabel=Percentage%20of%20Votes&backgroundColor=1351271600.2,0661592140.2,1940570400.2,0481701900.2,2261800560.2,0961141270.2&borderColor=1351271601,0661592141,1940570401,0481701901,2261800561,0961141271&borderWidth=1
+
+<img src="https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%20A,op.%20B,op.%20C,op.%20D,op.%20E,op.%20F&barLabel=Percentage%20of%20Votes&backgroundColor=1351271600.2,0661592140.2,1940570400.2,0481701900.2,2261800560.2,0961141270.2&borderColor=1351271601,0661592141,1940570401,0481701901,2261800561,0961141271&borderWidth=1" alt="bar chart">
+
+- URL:
+  -/charts/bar
+
+- Parameters:
+  - value: Values of each bar, comma separate.
+  - label: Name of each bar, comma separate.
+  - barLabel: Title of the chart
+  - backgroundColor: colours of each bar, comma separate
+  - borderColor: border colour of each bar, comma separete
+  - borderWidth: Size of the border of the each bar.
+
 ## Testing
 
 You can test this server
