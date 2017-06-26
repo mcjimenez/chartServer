@@ -59,7 +59,7 @@ For example:
 
 URL: https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20mounth,Minutes%20this%20mounth&lineLabels=01,06,12,18,24,31,37&legend=display:true,position:bottom&disableCurve=1&width=700&heigth=400
 
-<img src="https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20mounth,Minutes%20this%20mounth&lineLabels=01,06,12,18,24,31,37&legend=display:true,position:bottom&disableCurve=1&width=700&heigth=400" alt="Line chart">
+<center><img src="https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20mounth,Minutes%20this%20mounth&lineLabels=01,06,12,18,24,31,37&legend=display:true,position:bottom&disableCurve=1&width=700&heigth=400" alt="Line chart"></center>
 
 - URL:
   - /charts/line
@@ -76,7 +76,7 @@ URL: https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000
 
 URL: https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%20A,op.%20B,op.%20C,op.%20D,op.%20E,op.%20F&barLabel=Percentage%20of%20Votes&backgroundColor=1351271600.2,0661592140.2,1940570400.2,0481701900.2,2261800560.2,0961141270.2&borderColor=1351271601,0661592141,1940570401,0481701901,2261800561,0961141271&borderWidth=1
 
-<img src="https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%20A,op.%20B,op.%20C,op.%20D,op.%20E,op.%20F&barLabel=Percentage%20of%20Votes&backgroundColor=1351271600.2,0661592140.2,1940570400.2,0481701900.2,2261800560.2,0961141270.2&borderColor=1351271601,0661592141,1940570401,0481701901,2261800561,0961141271&borderWidth=1" alt="bar chart">
+<center><img src="https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%20A,op.%20B,op.%20C,op.%20D,op.%20E,op.%20F&barLabel=Percentage%20of%20Votes&backgroundColor=1351271600.2,0661592140.2,1940570400.2,0481701900.2,2261800560.2,0961141270.2&borderColor=1351271601,0661592141,1940570401,0481701901,2261800561,0961141271&borderWidth=1" alt="bar chart"></center>
 
 - URL:
   - /charts/bar
@@ -93,7 +93,7 @@ URL: https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=
 
 URL: https://chartgenerator.herokuapp.com/charts/generic/pie?values=12,19,3,17,28,24&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=700&heigth=400&legend=position:bottom
 
-<img src="https://chartgenerator.herokuapp.com/charts/generic/pie?values=12,19,3,17,28,24&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=700&heigth=400&legend=position:bottom" alt="bar chart">
+<center><img src="https://chartgenerator.herokuapp.com/charts/generic/pie?values=12,19,3,17,28,24&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=700&heigth=400&legend=position:bottom" alt="bar chart"></center>
 
 - URL:
   - /charts/generic/pie
@@ -107,7 +107,7 @@ URL: https://chartgenerator.herokuapp.com/charts/generic/pie?values=12,19,3,17,2
 
 URL: https://chartgenerator.herokuapp.com/charts/generic/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend=position:right
 
-<img src="https://chartgenerator.herokuapp.com/charts/generic/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend=position:right" alt="doughnut chart">
+<center><img src="https://chartgenerator.herokuapp.com/charts/generic/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend=position:right" alt="doughnut chart"></center>
 
 - URL:
   - /charts/generic/doughnut
@@ -121,7 +121,7 @@ URL: https://chartgenerator.herokuapp.com/charts/generic/doughnut?values=56,34,1
 
 URL: https://chartgenerator.herokuapp.com/charts/generic/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend=position:left
 
-<img src="https://chartgenerator.herokuapp.com/charts/generic/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend=position:left" alt="polar area chart">
+<center><img src="https://chartgenerator.herokuapp.com/charts/generic/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend=position:left" alt="polar area chart"></center>
 
 - URL:
   - /charts/generic/polarArea
