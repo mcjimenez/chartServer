@@ -45,15 +45,39 @@ The aspect and values of the chart is passed on the url as parameters.
 All graphics can specify the parameters:
   - width: Width of the image
   - height: Height of the image
-  - legend: If you want the labels on the graphics to be shown, and on what position.
+  - legend: If you want the labels on the graphics to be shown, and on what position. It should be a well formed JSON:
 
-    legend=[display:[true|false],][position:[top|right|bottom|left]]
+    legend={"display":[true|false],"position":["top"|"right"|"bottom"|"left"]}
+  - xAxes: a well formed JSON with x axe configuration
+  - yAxes: a well formed JSON with y axe configuration
+
+[x|y]Axes has the next possible values:
+  - "display": If set to false the axis is hidden from view. Overrides gridLines.display, scaleLabel.display, and ticks.display.
+  - "position": Position of the axis in the chart. Possible values are: "top", "left", - - "bottom", "right"
+  - "gridLines": Well formed JSON, possible values are:
+    - "display": If false, do not display grid lines for this axis.
+    - "color": "rgba(0..255, 0..255, 0..255, 0..1)" The color of the grid lines. If specified as an array, the first color applies to the first grid line, the second to the second grid line and so on.
+    - "drawTicks": If true, draw lines beside the ticks in the axis area beside the chart.
+    - "lineWidth": Stroke width of grid lines.
+    - "zeroLineColor": "rgba(0..255, 0..255, 0..255, 0..1)" Stroke color of the grid line for the first index (index 0).
+    - "zeroLineWidth": Stroke width of the grid line for the first index (index 0).
+  - "ticks": Well formed JSON, possible values are:
+    - "min": User defined minimum number for the scale, overrides minimum value from data
+    - "max": User defined maximum number for the scale, overrides maximum value from data.
+    - "stepSize": User defined fixed step size for the scale.
+    - "display": If true, display the axis title.
+    - "fontColor": Font color for scale title.
+    - "fontFamily": Font family for the scale title, follows CSS font-family options.
+    - "fontSize": Font size for scale title.
+    - "fontStyle": Font style for the scale title, follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit).
 
 The colors are especified as RGB and Alpha in decimal value of three character (if the number is
 smaller than 100 you should add a 0 at the right).
 For example:
 - #189ACA with an alpha of 0.4 will be: 0241542020.4
 - #189ACA with an alpha of 1 will be: 0241542021
+
+Axes Configuration:
 
 ### Line Chart
 

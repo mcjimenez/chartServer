@@ -68,54 +68,26 @@ function ChartUtils(aLogLevel) {
     return aValue && typeof aValue === 'string' && aValue.split(aSep) || [];
   }
 
-  function getLegendPosition(aPosition) {
-    if (LEGEND_POSITIONS_VALID.includes(aPosition)) {
-      return aPosition;
-    } else {
-      return LEGEND_POSITION_DEFAULT;
+  function getJSONValue(aValues) {
+    if (!aValues) {
+      return null;
     }
-  }
-
-  function validLegendValue(aValues) {
-    let validateValue;
-    let value = aValues[1];
-
-    switch(aValues[0]) {
-      case 'display':
-        if (value.toLowerCase() === 'false') {
-          validateValue = false;
-        } else {
-          validateValue = true;
-        }
-        break;
-      case 'position':
-        validateValue = getLegendPosition(value);
+    try {
+      return JSON.parse(aValues);
+    } catch (err) {
+      logger.errror("Error on json with axes options. ", err.message);
+      return null;
     }
-    return validateValue;
-  }
-
-  function getLegendOptions(aLegend) {
-    let legend = {};
-    if (!aLegend) {
-      return legend;
-    }
-    let legendKeysValues = getValuesAsArray(aLegend, ',');
-
-    for (let i = 0, l = legendKeysValues.length; i < l; i++) {
-      var values = getValuesAsArray(legendKeysValues[i], ':');
-      if (values && values.length === 2 && LEGEND_VALID_KEYS.includes(values[0])) {
-        legend[values[0]] = validLegendValue(values);
-      }
-    }
-    return legend;
   }
 
   function getChartOptions(aQuery) {
-    let queryLegend = aQuery.legend || '';
-
     let width = aQuery.width || 400;
     let height = aQuery.height || 400;
-    var legends = getLegendOptions(queryLegend);
+
+    let legends = getJSONValue(aQuery.legend);
+
+    let yAxes = getJSONValue(aQuery.yAxes);
+    let xAxes = getJSONValue(aQuery.xAxes);
 
     let options = {
       responsive: false,
@@ -129,8 +101,21 @@ function ChartUtils(aLogLevel) {
           }
         }]
       },
-      legend: legends
     };
+
+    if (legends) {
+      options.legend = legends;
+    }
+
+    if (yAxes || xAxes) {
+      options.scales = {};
+      if (yAxes) {
+        options.scales.yAxes = [yAxes];
+      }
+      if (xAxes) {
+        options.scales.xAxes = [xAxes];
+      }
+    }
     return options;
   }
 
