@@ -117,6 +117,20 @@ URL: https://chartgenerator.herokuapp.com/charts/generic/doughnut?values=56,34,1
   - labels: Name of each section of the doughnut, comma separate.
   - backgroundColor: colours of each doughnut section, comma separate
 
+### Polar area Chart
+
+URL: https://chartgenerator.herokuapp.com/charts/generic/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend=position:left
+
+<img src="https://chartgenerator.herokuapp.com/charts/generic/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend=position:left" alt="polar area chart">
+
+- URL:
+  - /charts/generic/polarArea
+
+- Parameters:
+  - values: Values of each section of the area, comma separate.
+  - labels: Name of each section of the area, comma separate.
+  - backgroundColor: colours of each area section, comma separate
+
 ## Testing
 
-You can test this server
+You can generate and test this chart on https://chartgenerator.herokuapp.com server
