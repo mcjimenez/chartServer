@@ -102,7 +102,20 @@ URL: https://chartgenerator.herokuapp.com/charts/generic/pie?values=12,19,3,17,2
   - values: Values of each section of the pie, comma separate.
   - labels: Name of each bar, comma separate.
   - backgroundColor: colours of each pie section, comma separate
-  - borderWidth: Size of the border of the each bar.
+
+### Doughnut Chart
+
+URL: https://chartgenerator.herokuapp.com/charts/generic/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend=position:right
+
+<img src="https://chartgenerator.herokuapp.com/charts/generic/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend=position:right" alt="doughnut chart">
+
+- URL:
+  - /charts/generic/doughnut
+
+- Parameters:
+  - values: Values of each section of the doughnut, comma separate.
+  - labels: Name of each section of the doughnut, comma separate.
+  - backgroundColor: colours of each doughnut section, comma separate
 
 ## Testing
 
