@@ -79,7 +79,7 @@ URL: https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=
 <img src="https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%20A,op.%20B,op.%20C,op.%20D,op.%20E,op.%20F&barLabel=Percentage%20of%20Votes&backgroundColor=1351271600.2,0661592140.2,1940570400.2,0481701900.2,2261800560.2,0961141270.2&borderColor=1351271601,0661592141,1940570401,0481701901,2261800561,0961141271&borderWidth=1" alt="bar chart">
 
 - URL:
-  -/charts/bar
+  - /charts/bar
 
 - Parameters:
   - value: Values of each bar, comma separate.
@@ -87,6 +87,21 @@ URL: https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=
   - barLabel: Title of the chart
   - backgroundColor: colours of each bar, comma separate
   - borderColor: border colour of each bar, comma separete
+  - borderWidth: Size of the border of the each bar.
+
+### Pie Chart
+
+URL: https://chartgenerator.herokuapp.com/charts/generic/pie?values=12,19,3,17,28,24&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=700&heigth=400&legend=position:bottom
+
+<img src="https://chartgenerator.herokuapp.com/charts/generic/pie?values=12,19,3,17,28,24&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=700&heigth=400&legend=position:bottom" alt="bar chart">
+
+- URL:
+  - /charts/generic/pie
+
+- Parameters:
+  - values: Values of each section of the pie, comma separate.
+  - labels: Name of each bar, comma separate.
+  - backgroundColor: colours of each pie section, comma separate
   - borderWidth: Size of the border of the each bar.
 
 ## Testing
