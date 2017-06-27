@@ -46,10 +46,17 @@ All graphics can specify the parameters:
   - width: Width of the image
   - height: Height of the image
   - legend: If you want the labels on the graphics to be shown, and on what position. It should be a well formed JSON:
-
-    legend={"display":[true|false],"position":["top"|"right"|"bottom"|"left"]}
   - xAxis: a well formed JSON with x axis configuration
   - yAxis: a well formed JSON with y axis configuration
+
+legend has the following possible values:
+  - "display": [true|false] is the legend shown
+  - "position": Position of the legend. Options are: "top", "left", "bottom", "right"
+  - "labels": Well formed JSON, possible values are:
+    - "fontSize": font size of text
+    - "fontStyle": font style of text
+    - "fontColor": Color of text (e.g. "rgb(23,21,21,1)")
+    - "fontFamily": Font family of legend text. Default "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
 
 [x|y]Axis has the following possible values:
   - "display": If set to false the axis is hidden from view. Overrides gridLines.display, scaleLabel.display, and ticks.display.
