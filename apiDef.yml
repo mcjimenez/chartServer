@@ -20,7 +20,8 @@ produces:
   - text/html
 x-implementation-module: ./serverModules/chartsImpl
 x-implementation-middleware:
-  - configReady
+  - normalize
+  - parseData
 x-implementation-final-middleware:
   - errorHandler
 x-implementation-configuration: loadConfig
@@ -28,7 +29,7 @@ paths:
   /charts/bar:
     get:
       summary: Gets bar chart
-      x-implemented-in: getBar
+      x-implemented-in: getChart
       description: It return a bar chart.
       parameters:
         - name: values
@@ -73,7 +74,7 @@ paths:
   /charts/line:
     get:
       summary: Gets bar chart
-      x-implemented-in: getLine
+      x-implemented-in: getChart
       description: It return a bar chart.
       parameters:
         - name: values
@@ -105,17 +106,72 @@ paths:
           description: Correct result
           schema:
             $ref: '#/definitions/HTML'
-  /charts/generic/{type}:
+  /charts/pie:
     get:
       summary: Gets bar chart
-      x-implemented-in: getGeneric
+      x-implemented-in: getChart
       description: It return a bar chart.
       parameters:
-        - name: type
-          description: Type of chart
-          in: path
-          type: string
+        - name: values
+          description: The values to represent on the chart
+          in: query
           required: true
+          type: string
+        - name: labels
+          description: labels
+          in: query
+          required: false
+          type: string
+        - name: backgroundColor
+          description: background color
+          in: query
+          required: false
+          type: string
+      tags:
+        - Something
+      produces:
+        - text/html
+      responses:
+        '200':
+          description: Correct result
+          schema:
+            $ref: '#/definitions/HTML'
+  /charts/doughnut:
+    get:
+      summary: Gets bar chart
+      x-implemented-in: getChart
+      description: It return a bar chart.
+      parameters:
+        - name: values
+          description: The values to represent on the chart
+          in: query
+          required: true
+          type: string
+        - name: labels
+          description: labels
+          in: query
+          required: false
+          type: string
+        - name: backgroundColor
+          description: background color
+          in: query
+          required: false
+          type: string
+      tags:
+        - Something
+      produces:
+        - text/html
+      responses:
+        '200':
+          description: Correct result
+          schema:
+            $ref: '#/definitions/HTML'
+  /charts/polarArea:
+    get:
+      summary: Gets bar chart
+      x-implemented-in: getChart
+      description: It return a bar chart.
+      parameters:
         - name: values
           description: The values to represent on the chart
           in: query

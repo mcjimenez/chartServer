@@ -24,16 +24,20 @@ module.exports = function(aLogLevel) {
     aRes.setHeader("Content-Length", length);
   }
 
-  function generate(aReq, aRes, aData) {
+  function generate(aReq, aRes) {
+    let data = aReq.parsedData;
     let query = aReq.query || {};
+
     let width = query.width || DEFAULT_WIDTH;
     let height = query.height || DEFAULT_HEIGHT;
+
     charWrapper.setSize(width, height);
 
-    if (!aData) {
+    if (!data) {
       aRes.status(500).send("No values received");
     }
-    charWrapper.generate(aData).
+
+    charWrapper.generate(data).
       then(blob => {
         setHeaders(aRes, blob.length);
         aRes.status(200).send(blob);
@@ -44,7 +48,15 @@ module.exports = function(aLogLevel) {
       });
   }
 
-  function normalize(aReq) {
+  let parsers = {
+    'bar': barChartAPI,
+    'line': lineChartAPI,
+    'pie': genericAPI,
+    'polarArea': genericAPI,
+    'doughnut': genericAPI
+  };
+
+  function normalize(aReq, aRes, aNext) {
     let query = aReq.query || {};
 
     if (!query.width) {
@@ -54,19 +66,29 @@ module.exports = function(aLogLevel) {
       query.height = DEFAULT_HEIGHT;
     }
     aReq.query = query;
-    return aReq;
+    aNext();
+  }
+
+  function parseData(aReq, aRes, aNext) {
+    if (!aReq.path.startsWith('/charts')) {
+      return aNext();
+    }
+    let typeOfChart = aReq.path.split('/')[2];
+
+    // Check for type...
+    if (parsers[typeOfChart] && typeof parsers[typeOfChart].getData === 'function') {
+      aReq.typeOfChart = typeOfChart;
+      aReq.parsedData = parsers[typeOfChart].getData(aReq);
+    } else {
+      logger.error('Invalid/unknown type of chart!.', aReq.path);
+    }
+    return aNext();
   }
 
   return {
-    getBar: function getBar(aReq, aRes) {
-      return generate(aReq, aRes, barChartAPI.getData(normalize(aReq)));
-    },
-    getLine: function getLine(aReq, aRes) {
-      return generate(aReq, aRes, lineChartAPI.getData(normalize(aReq)));
-    },
-    getGeneric: function getGeneric(aReq, aRes) {
-      return generate(aReq, aRes, genericAPI.getData(normalize(aReq)));
-    }
+    normalize: normalize,
+    parseData: parseData,
+    getChart: generate
   };
 
 };

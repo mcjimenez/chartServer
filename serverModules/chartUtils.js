@@ -69,13 +69,14 @@ function ChartUtils(aLogLevel) {
   }
 
   function getJSONValue(aValues) {
+    logger.log("getJSONValue. value")
     if (!aValues) {
       return null;
     }
     try {
       return JSON.parse(aValues);
     } catch (err) {
-      logger.errror("Error on json with axes options. ", err.message);
+      logger.error("Error on json with axes options. ", err.message);
       return null;
     }
   }
@@ -86,8 +87,8 @@ function ChartUtils(aLogLevel) {
 
     let legends = getJSONValue(aQuery.legend);
 
-    let yAxes = getJSONValue(aQuery.yAxes);
-    let xAxes = getJSONValue(aQuery.xAxes);
+    let yAxes = getJSONValue(aQuery.yAxis);
+    let xAxes = getJSONValue(aQuery.xAxis);
 
     let options = {
       responsive: false,
@@ -104,15 +105,18 @@ function ChartUtils(aLogLevel) {
     };
 
     if (legends) {
+      logger.log(" tiene legeds");
       options.legend = legends;
     }
 
     if (yAxes || xAxes) {
       options.scales = {};
       if (yAxes) {
+      logger.log(" tiene yAxes");
         options.scales.yAxes = [yAxes];
       }
       if (xAxes) {
+      logger.log(" tiene xAxes");
         options.scales.xAxes = [xAxes];
       }
     }
