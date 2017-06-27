@@ -7,19 +7,10 @@ function GenericChart(aLogLevel) {
   const logger = new Utils.MultiLevelLogger('GenericChar', aLogLevel);
   const chartUtils = new(require('./chartUtils'))(aLogLevel);
 
-  const validTypes = ['pie', 'polarArea', 'doughnut'];
-
-  function isValidType(aType) {
-    return validTypes.includes(aType);
-  }
-
   function getData(aReq) {
     let query = aReq.query || {};
-    let type = aReq.params.type;
+    let type = aReq.typeOfChart;
 
-    if (!isValidType(type)) {
-      return null;
-    }
     let labels = chartUtils.getValuesAsArray(query.labels, ',');
     let backgroundColor = query.backgroundColor && chartUtils.getColors(query.backgroundColor) || [];
     let values = chartUtils.getValuesAsArray(query.values, ',');
@@ -36,7 +27,7 @@ function GenericChart(aLogLevel) {
         labels: labels,
         datasets: [{
           backgroundColor: backgroundColor,
-          data:values
+          data: values
         }]
       },
       options: chartUtils.getChartOptions(query)

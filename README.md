@@ -45,15 +45,46 @@ The aspect and values of the chart is passed on the url as parameters.
 All graphics can specify the parameters:
   - width: Width of the image
   - height: Height of the image
-  - legend: If you want the labels on the graphics to be shown, and on what position.
+  - legend: If you want the labels on the graphics to be shown, and on what position. It should be a well formed JSON:
+  - xAxis: a well formed JSON with x axis configuration
+  - yAxis: a well formed JSON with y axis configuration
 
-    legend=[display:[true|false],][position:[top|right|bottom|left]]
+legend has the following possible values:
+  - "display": [true|false] is the legend shown
+  - "position": Position of the legend. Options are: "top", "left", "bottom", "right"
+  - "labels": Well formed JSON, possible values are:
+    - "fontSize": font size of text
+    - "fontStyle": font style of text
+    - "fontColor": Color of text (e.g. "rgb(23,21,21,1)")
+    - "fontFamily": Font family of legend text. Default "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+
+[x|y]Axis has the following possible values:
+  - "display": If set to false the axis is hidden from view. Overrides gridLines.display, scaleLabel.display, and ticks.display.
+  - "position": Position of the axis in the chart. Possible values are: "top", "left", "bottom", "right"
+  - "gridLines": Well formed JSON, possible values are:
+    - "display": If false, do not display grid lines for this axis.
+    - "color": "rgba(0..255, 0..255, 0..255, 0..1)" The color of the grid lines. If specified as an array, the first color applies to the first grid line, the second to the second grid line and so on.
+    - "drawTicks": If true, draw lines beside the ticks in the axis area beside the chart.
+    - "lineWidth": Stroke width of grid lines.
+    - "zeroLineColor": "rgba(0..255, 0..255, 0..255, 0..1)" Stroke color of the grid line for the first index (index 0).
+    - "zeroLineWidth": Stroke width of the grid line for the first index (index 0).
+  - "ticks": Well formed JSON, possible values are:
+    - "min": User defined minimum number for the scale, overrides minimum value from data
+    - "max": User defined maximum number for the scale, overrides maximum value from data.
+    - "stepSize": User defined fixed step size for the scale.
+    - "display": If true, display the axis title.
+    - "fontColor": Font color for scale title.
+    - "fontFamily": Font family for the scale title, follows CSS font-family options.
+    - "fontSize": Font size for scale title.
+    - "fontStyle": Font style for the scale title, follows CSS font-style options (i.e. normal, italic, oblique, initial, inherit).
 
 The colors are especified as RGB and Alpha in decimal value of three character (if the number is
 smaller than 100 you should add a 0 at the right).
 For example:
 - #189ACA with an alpha of 0.4 will be: 0241542020.4
 - #189ACA with an alpha of 1 will be: 0241542021
+
+Axes Configuration:
 
 ### Line Chart
 
@@ -104,9 +135,9 @@ https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%2
 
 #### Sample:
 
-<img src="https://chartgenerator.herokuapp.com/charts/generic/pie?values=12,19,3,17,28,24&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=700&heigth=400&legend=position:bottom" alt="bar chart">
+<img src="http://localhost:8126/charts/pie?values=12,19,33,17,28,24&labels=12%25%20Monday,19%25%20Tuesday,23%25%20Wednesday,17%25%20Thursday,28%25%20Friday,24%25%20Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=600&heigth=400&legend={%22display%22:true,%22position%22:%22right%22,"labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}&xAxis={%22display%22:false,%22gridLines%22:{%22display%22:false},%22angleLines%22:{%22display%22:false}}&yAxis={%22display%22:false,%22gridLines%22:{%22display%22:false},%22angleLines%22:{%22display%22:false}}" alt="bar chart">
 
-https://chartgenerator.herokuapp.com/charts/generic/pie?values=12,19,3,17,28,24&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=700&heigth=400&legend=position:bottom
+http://localhost:8126/charts/pie?values=12,19,33,17,28,24&labels=12%25%20Monday,19%25%20Tuesday,23%25%20Wednesday,17%25%20Thursday,28%25%20Friday,24%25%20Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=600&heigth=400&legend={%22display%22:true,%22position%22:%22right%22,"labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}&xAxis={%22display%22:false,%22gridLines%22:{%22display%22:false},%22angleLines%22:{%22display%22:false}}&yAxis={%22display%22:false,%22gridLines%22:{%22display%22:false},%22angleLines%22:{%22display%22:false}}
 
 ### Doughnut Chart
 
