@@ -100,9 +100,9 @@ Axes Configuration:
 
 #### Sample:
 
-<img src="https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20month,Minutes%20this%20month&lineLabels=01,06,12,18,24,31,37&legend=display:true,position:bottom&disableCurve=1&width=700&heigth=400" alt="Line chart">
+<img src='https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20month,Minutes%20this%20month&lineLabels=01,06,12,18,24,31,37&legend={"display":true,"position":"bottom"}&disableCurve=1&width=700&heigth=400' alt="Line chart">
 
-https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20month,Minutes%20this%20month&lineLabels=01,06,12,18,24,31,37&legend=display:true,position:bottom&disableCurve=1&width=700&heigth=400
+https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20month,Minutes%20this%20month&lineLabels=01,06,12,18,24,31,37&legend={"display":true,"position":"bottom"}&disableCurve=1&width=700&heigth=400
 
 
 ### Bar Chart
@@ -126,7 +126,7 @@ https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%2
 
 ### Pie Chart
 
-#### URL: /charts/generic/pie
+#### URL: /charts/pie
 
 #### Parameters
   - values: Comma separated list (',') of the values for each section of the pie.
@@ -135,13 +135,13 @@ https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%2
 
 #### Sample:
 
-<img src='https://chartgenerator.herokuapp.com/charts/pie?values=12,19,33,17,28,24&labels=12%25%20Monday,19%25%20Tuesday,23%25%20Wednesday,17%25%20Thursday,28%25%20Friday,24%25%20Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=600&heigth=400&legend={%22display%22:true,%22position%22:%22right%22,"labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}&xAxis={%22display%22:false,%22gridLines%22:{%22display%22:false},%22angleLines%22:{%22display%22:false}}&yAxis={%22display%22:false,%22gridLines%22:{%22display%22:false},%22angleLines%22:{%22display%22:false}}' alt="bar chart">
+<img src='https://chartgenerator.herokuapp.com/charts/pie?values=12,19,33,17,28,24&labels=12%25%20Monday,19%25%20Tuesday,23%25%20Wednesday,17%25%20Thursday,28%25%20Friday,24%25%20Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=600&heigth=400&legend={"display":true,"position":"right","labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}&xAxis={"display":false,"gridLines":{"display":false},"angleLines":{"display":false}}&yAxis={"display":false,"gridLines":{"display":false},"angleLines":{"display":false}}' alt="bar chart">
 
-https://chartgenerator.herokuapp.com/charts/pie?values=12,19,33,17,28,24&labels=12%25%20Monday,19%25%20Tuesday,23%25%20Wednesday,17%25%20Thursday,28%25%20Friday,24%25%20Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=600&heigth=400&legend={%22display%22:true,%22position%22:%22right%22,"labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}&xAxis={%22display%22:false,%22gridLines%22:{%22display%22:false},%22angleLines%22:{%22display%22:false}}&yAxis={%22display%22:false,%22gridLines%22:{%22display%22:false},%22angleLines%22:{%22display%22:false}}
+https://chartgenerator.herokuapp.com/charts/pie?values=12,19,33,17,28,24&labels=12%25%20Monday,19%25%20Tuesday,23%25%20Wednesday,17%25%20Thursday,28%25%20Friday,24%25%20Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=600&heigth=400&legend={"display":true,"position":"right","labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}&xAxis={"display":false,"gridLines":{"display":false},"angleLines":{"display":false}}&yAxis={"display":false,"gridLines":{"display":false},"angleLines":{"display":false}}
 
 ### Doughnut Chart
 
-#### URL: /charts/generic/doughnut
+#### URL: /charts/doughnut
 
 #### Parameters
   - values: Comma separated list (',') of values for each section of the doughnut.
@@ -150,14 +150,14 @@ https://chartgenerator.herokuapp.com/charts/pie?values=12,19,33,17,28,24&labels=
 
 #### Sample:
 
-<img src="https://chartgenerator.herokuapp.com/charts/generic/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend=position:right" alt="doughnut chart">
+<img src='https://chartgenerator.herokuapp.com/charts/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend={"position":"right"}' alt="doughnut chart">
 
-https://chartgenerator.herokuapp.com/charts/generic/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend=position:right
+https://chartgenerator.herokuapp.com/charts/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend={"position":"right"}
 
 
 ### Polar area Chart
 
-#### URL: /charts/generic/polarArea
+#### URL: /charts/polarArea
 
 #### Parameters
 
@@ -167,11 +167,10 @@ https://chartgenerator.herokuapp.com/charts/generic/doughnut?values=56,34,10&lab
 
 #### Sample:
 
-<img src="https://chartgenerator.herokuapp.com/charts/generic/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend=position:left" alt="polar area chart">
+<img src='https://chartgenerator.herokuapp.com/charts/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend={"position":"left"}' alt="polar area chart">
 
-https://chartgenerator.herokuapp.com/charts/generic/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend=position:left
-
+https://chartgenerator.herokuapp.com/charts/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend={"position":"left"}
 
 ## Testing
 
-You can generate and test this chart on https://chartgenerator.herokuapp.com server
+You can generate and test those charts on https://chartgenerator.herokuapp.com server
