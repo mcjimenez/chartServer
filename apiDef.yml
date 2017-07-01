@@ -20,6 +20,8 @@ produces:
   - text/html
 x-implementation-module: ./serverModules/chartsImpl
 x-implementation-middleware:
+  - validate
+  - regenerateQuery
   - normalize
   - parseData
 x-implementation-final-middleware:

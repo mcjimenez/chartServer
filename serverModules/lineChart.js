@@ -1,10 +1,6 @@
 function LineChart(aLogLevel) {
   'use strict';
 
-  // http://<host>:<port>/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=apples,orange&lineLabels=01,06,12,18,24,31,37&legend=display:true,position:bottom&disableCurve=1
-
-// https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=apples,orange&lineLabels=01,06,12,18,24,31,37&legend=display:false,position:bottom&disableCurve=1&width=700&heigth=400
-
   const Utils = require('swagger-boilerplate').Utils;
   const logger = new Utils.MultiLevelLogger('LineChar', aLogLevel);
   const chartUtils = new(require('./chartUtils'))(aLogLevel);
@@ -22,6 +18,7 @@ function LineChart(aLogLevel) {
     let borderColor = query.borderColor && chartUtils.getColors(query.borderColor, '') || [];
     let disableCurve = query.disableCurve || false;
     if (!values || values.length <= 0) {
+      logger.error("no values! return null");
       return null;
     }
 

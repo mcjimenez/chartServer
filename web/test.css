@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic");
+@import url("https://fonts.googleapis.com/css?family=Muli:300,300italic");
+@import url("https://fast.fonts.com/t/1.css?apiType=css&projectid=eab16f51-e7e4-4285-8b2b-3844b7921c78");
+
+html, body {
+  vertical-align: baseline;
+  margin-top: 10px;
+  margin-bottom: 60px;
+}
+input, select, button {
+  font: 11px system-ui;
+  display: block;
+  text-rendering: auto;
+  text-align: start;
+}
+
+input, select {
+  padding: 2px 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 12px;
+}
+input {
+  width: 600px;
+}
+
+img {
+  padding: 1px;
+  border: 2px solid #021a40;
+  display: block;
+}
+
+span {
+  color: #5F6062;
+  display: inline-block;
+  margin: 10px 2px;
+  padding: 2px 10px;
+}
+
+label {
+  display: block
+}
+.btn {
+    background-color: #0099cb;
+    box-shadow: 0 0 0 1px #0099cb;
+    color: #fff;
+    border-radius: 1px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-family: "AvantGardeGothicITCW01B 731069", arial;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    font-size: 16px;
+    height: 30px;
+    border: 0;
+    margin: 10px;
+}
+
+.input-short {
+  display: inline-block;
+  width: 60px;
+}
+.input-medium {
+  width: 250px;
+}
+
+.input-json {
+  width: 900px;
+}
+
+.input-list {
+  width: 750px;
+}
+
+:-moz-placeholder{
+  font-size: 10px;
+}
+
+::-webkit-input-placeholder {
+   font-size: 10px;
+}
+
+#result[data-status="hidden"] {
+  display: none;
+}
+
+#result[data-status="visible"] {
+  display: block;
+}
