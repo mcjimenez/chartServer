@@ -37,16 +37,16 @@
     onSelectChange({target:{value:'line'}});
   };
 
-  var setResultIsVisibility = function setResultIsVisibility(visible) {
+  var setResultsVisibility = function setResultsVisibility(visible) {
     resultSectionElem.dataset.status = visible ? 'visible' : 'hidden';
   };
 
   var onInputChange = function onInputChange(evt) {
-    setResultIsVisibility(false);
+    setResultsVisibility(false);
   };
 
   var onSelectChange = function onSelectChange(evt) {
-    setResultIsVisibility(false);
+    setResultsVisibility(false);
 
     if (!evt.target.value) {
       return;
@@ -93,21 +93,24 @@
     var params = composeJSON(chartTypeSelect.value);
     var sharedSecret = sharedSecretInput.value;
 
-    jsonResultInput.value = JSON.stringify(params);
-    setResultIsVisibility(true);
+    var paramsStringified = JSON.stringify(params);
+    jsonResultInput.value = paramsStringified;
+    setResultsVisibility(true);
+
+    var encodedParams = btoa(paramsStringified);
 
     if (sharedSecret) {
       var auth = cryptoUtils.then(cu => cu.doImportKey(cu.str2bin(sharedSecret)).
-        then(cu.doHMAC.bind(cu, cu.str2bin(btoa(JSON.stringify(params))))).
+        then(cu.doHMAC.bind(cu, cu.str2bin(encodedParams))).
         then(cu.bin2hex).
         then(function(auth) {
-          let src = URLS[chartTypeSelect.value] + '?param=' + btoa(JSON.stringify(params)) + '&auth=' + auth;
+          let src = URLS[chartTypeSelect.value] + '?param=' + encodedParams + '&auth=' + auth;
           chartImg.src = src;
           urlResultInput.value = src;
           return src;
         }));
     } else {
-      let src = URLS[chartTypeSelect.value] + '?param=' + btoa(JSON.stringify(params));
+      let src = URLS[chartTypeSelect.value] + '?param=' + encodedParams;
       urlResultInput.value = src;
       chartImg.src = src;
     }
