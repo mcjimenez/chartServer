@@ -1,0 +1,82 @@
+<html>
+  <head>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js'></script>
+    <script src='./cryptUtils.js'></script>
+    <script src='./test.js' defer></script>
+    <link id="themeFile" rel="stylesheet" href="./test.css">
+  </head>
+  <body>
+    <section id="inputs">
+      <span>Type of chart</span>
+      <select id="chartType" name="chartType">
+        <option value='line'>Line</option>
+        <option value='bar'>Bar</option>
+        <option value='pie'>Pie</option>
+        <option value='polarArea'>Polar area</option>
+        <option value='doughnut'>Doughnut</option>
+      </select>
+      <span>Parameters for all charts</span>
+      <div id="genericParameters">
+        <input type='text' id='sharedSecret' name='sharedSecret' value='' class="input-medium" placeholder='Shared Secret'/>
+        <input type="text" name="width" value="" class="input-short" placeholder="Width"/>
+        <input type="text" name="height" value="" class="input-short" placeholder="Height"/>
+        <input type="text" name="legend" value="" class="json input-json" value="" placeholder='Legend - JSON keys:{display:[true|false], position:[top|left|bottom|right], labels:{fontSize, fontStyle, fontColor:eg:"rgb(23,21,21,1)", fontFamily}}'/>
+        <input type="text" name="xAxis" value="" class="json input-json" placeholder="xAxis - JSON keys:{display,position,gridLines:{display,color,drawTicks,lineWidth,zeroLineColor,zeroLineWidth},ticks:{min,max,stepSize,display,fontColor,fontFamily,fontSize,fontStyle}}}"/>
+        <input type="text" name="yAxis" value="" class="json input-json" placeholder="yAxis - JSON keys: same as xAxis"/>
+      </div>
+      <div class="chartInputs" id="line">
+        <span>Line chart parameters</span>
+        <br/>
+        <input type="text" name="values" value="" class="input-list" placeholder="Values [required] - Comma (',') separated list of points"/>
+        <input type="text" name="lineLabels" value="" class="input-list" placeholder="LineLabels - Comma (',') separated list of labels of the abscissa axis"/>
+        <input type="text" name="labels" value="" class="input-list" placeholder="Labels - Comma (',') separated list of labels for each line"/>
+        <input type="text" name="backgroundColor" value="" class="input-list" placeholder="BackgroundColor - Color to paint under the line. List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+        <input type="text" name="borderColor" value="" class="input-list" placeholder="BorderColor - Color of the line that link the dots. List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+        <input type="text" name="disableCurve" value="" class="input-medium" placeholder="DisableCurve - Set any value for plain lines"/>
+      </div>
+      <div class="chartInputs" id="bar">
+        <span>Bar chart parameters</span>
+        <br/>
+        <input type="text" name="values" value="" class="input-list" placeholder="Values [required] - Comma (',') separated list of values, a value per bar."/>
+        <input type="text" name="labels" value="" class="input-list" placeholder="Labels - Comma separated list (',') of labels for the bars (a label per var)."/>
+        <input type="text" name="barLabel" value="" class="input-list" placeholder="BarLabel - Title of the chart"/>
+        <input type="text" name="backgroundColor" value="" class="input-list" placeholder="BackgroundColor - List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+        <input type="text" name="borderColor" value="" class="input-list" placeholder="BorderColor - Comma separated list (',') of colors for the borders of the bar"/>
+        <input type="text" name="borderWidth" value="" class="input-medium" placeholder="BorderWidth"/>
+      </div>
+      <div class="chartInputs" id="pie">
+        <span>Pie chart parameters</span>
+        <br/>
+        <input type="text" name="values" value="" class="input-list" placeholder="Values [required] - Comma separated list (',') of the values for each section of the pie"/>
+        <input type="text" name="labels" value="" class="input-list" placeholder="Labels - Comma separated list (',') of name for each of the pie section"/>
+        <input type="text" name="backgroundColor" class="input-list" value="" placeholder="BackgroundColor - List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+      </div>
+      <div class="chartInputs" id="polarArea">
+        <span>PolarArea chart parameters</span>
+        <br/>
+        <input type="text" name="values" value="" class="input-list" placeholder="Values [required] - Comma separated list (',') of values for each section."/>
+        <input type="text" name="labels" value="" class="input-list" placeholder="Labels - Comma separated list (',') of name for each section"/>
+        <input type="text" name="backgroundColor" class="input-list" value="" placeholder="BackgroundColor - List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+      </div>
+      <div class="chartInputs" id="doughnut">
+        <span>Doughnut chart parameters</span>
+        <input type="text" name="values" value="" class="input-list" placeholder="Values [required] - Comma separated list (',') of values for each section"/>
+        <input type="text" name="labels" value="" class="input-list" placeholder="Labels - Comma separated list (',') of name for each section"/>
+        <input type="text" name="backgroundColor" class="input-list" value="" placeholder="BackgroundColor - List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+      </div>
+      <footer>
+        <button id='sendParams' class="btn" type='submit'>Generate ></button>
+      </footer>
+    </section>
+
+    <section id="result" class="result" data-status="hidden">
+      <div id="divResult" data-result="hidden">
+        <label>JSON: <input id="jsonResult" class="input-json" /></label>
+        <label>URL: <input id="urlResult" class="input-json" /></label>
+        <img id='chartImg' src='' />
+      </div>
+    </section>
+    <br/>
+
+  </body>
+</html>

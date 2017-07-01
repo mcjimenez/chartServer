@@ -69,7 +69,6 @@ function ChartUtils(aLogLevel) {
   }
 
   function getJSONValue(aValues) {
-    logger.log("getJSONValue. value")
     if (!aValues) {
       return null;
     }
@@ -105,18 +104,15 @@ function ChartUtils(aLogLevel) {
     };
 
     if (legends) {
-      logger.log(" tiene legeds");
       options.legend = legends;
     }
 
     if (yAxes || xAxes) {
       options.scales = {};
       if (yAxes) {
-      logger.log(" tiene yAxes");
         options.scales.yAxes = [yAxes];
       }
       if (xAxes) {
-      logger.log(" tiene xAxes");
         options.scales.xAxes = [xAxes];
       }
     }

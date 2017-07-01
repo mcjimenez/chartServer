@@ -19,6 +19,8 @@ module.exports = function(aLogLevel) {
   const lineChartAPI = new(require('./lineChart'))(aLogLevel);
   const genericAPI = new(require('./genericChart'))(aLogLevel);
 
+  const validator = new(require('./validator'))(aLogLevel);
+
   function setHeaders(aRes, length) {
     aRes.setHeader("Content-Type", "image/png");
     aRes.setHeader("Content-Length", length);
@@ -26,16 +28,16 @@ module.exports = function(aLogLevel) {
 
   function generate(aReq, aRes) {
     let data = aReq.parsedData;
+    if (!data) {
+      aRes.status(400).send("No values received");
+    }
+
     let query = aReq.query || {};
 
     let width = query.width || DEFAULT_WIDTH;
     let height = query.height || DEFAULT_HEIGHT;
 
     charWrapper.setSize(width, height);
-
-    if (!data) {
-      aRes.status(500).send("No values received");
-    }
 
     charWrapper.generate(data).
       then(blob => {
@@ -44,7 +46,8 @@ module.exports = function(aLogLevel) {
       }).
       catch(error => {
         logger.error('There was an error generating the chart. ', error.message);
-        aRes.status(500).send(error.message);
+        aRes.status(500).send('There was an error generating the chart. ' +
+                              error.message);
       });
   }
 
@@ -78,14 +81,44 @@ module.exports = function(aLogLevel) {
     // Check for type...
     if (parsers[typeOfChart] && typeof parsers[typeOfChart].getData === 'function') {
       aReq.typeOfChart = typeOfChart;
-      aReq.parsedData = parsers[typeOfChart].getData(aReq);
+      var parsedData = parsers[typeOfChart].getData(aReq);
+      if (parsedData) {
+        aReq.parsedData = parsedData;
+      } else {
+        aRes.status(400).send('No correct data received for ' + typeOfChart + ' chart.');
+        return;
+      }
     } else {
       logger.error('Invalid/unknown type of chart!.', aReq.path);
+      aRes.status(400).send('Invalid/unknown type of chart!.');
+      return;
     }
-    return aNext();
+    aNext();
+  }
+
+  function validate(aReq, aRes, aNext) {
+    if (!aReq.path.startsWith('/charts')) {
+      return aNext();
+    }
+
+    let isValid = validator.isValid(aReq);
+    if (!isValid) {
+      aRes.status(403).send('Unauthorized access');
+    } else {
+      aNext();
+    }
+  }
+
+  function regenerateQuery(aReq, aRes, aNext) {
+    let paramB64 = aReq.query.param;
+    let param = Buffer.from(paramB64, 'base64').toString('ascii');
+    aReq.query = JSON.parse(param);
+    aNext();
   }
 
   return {
+    validate: validate,
+    regenerateQuery: regenerateQuery,
     normalize: normalize,
     parseData: parseData,
     getChart: generate

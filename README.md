@@ -31,6 +31,31 @@ npm install
 node server
 ```
 
+## Server configuration
+
+The server can be configured to require or not authorization to generate graphics.
+If you want the server to use authorization, a shared secret must be defined.
+
+To define a shared secret, just set the SHARED_SECRET environment variable to any value. If this
+variable is set, then all the requests must include the auth parameter, as described on the next section.
+
+## Authorization
+
+If authorization has been enabled (by defining a SHARED_SECRET environment variable) then the
+query string of the requests must have the following form:
+
+param=\<paramValue\>&auth=\<authValue\>
+
+where:
+  - paramValue: Base64 encoded string from the stringified JSON of the parameters.
+  - authValue: SHA256 HMAC using the shared secret as key, and paramValue as the value, that is:
+`auth = hmacSha256(paramValue, sharedSecret)`
+
+You can find an example page for generating requests on the clientTest directory.
+
+If authorization is enabled, all the requests that don't pase the right authorization value will
+not be executed, and a 401 error will be returned instead.
+
 ## How does it works
 
 This server can generate five types of charts:
@@ -55,7 +80,7 @@ legend has the following possible values:
   - "labels": Well formed JSON, possible values are:
     - "fontSize": font size of text
     - "fontStyle": font style of text
-    - "fontColor": Color of text (e.g. "rgb(23,21,21,1)")
+    - "fontColor": Color of text (e.g. "rgb(23,21,21,1)" or "#171515")
     - "fontFamily": Font family of legend text. Default "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
 
 [x|y]Axis has the following possible values:
@@ -84,8 +109,6 @@ For example:
 - #189ACA with an alpha of 0.4 will be: 0241542020.4
 - #189ACA with an alpha of 1 will be: 0241542021
 
-Axes Configuration:
-
 ### Line Chart
 
 #### URL: /charts/line
@@ -100,9 +123,28 @@ Axes Configuration:
 
 #### Sample:
 
-<img src='https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20month,Minutes%20this%20month&lineLabels=01,06,12,18,24,31,37&legend={"display":true,"position":"bottom"}&disableCurve=1&width=700&heigth=400' alt="Line chart">
+<img src='https://chartgenerator.herokuapp.com/charts/line?param=eyJ3aWR0aCI6IjcwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcImJvdHRvbVwifSIsInZhbHVlcyI6IjQxMCw0MDAsNDEwLDYwMCw0MDAsNTAwLDM4MDszODAsNTgwLDQ1MCw0MzAsNTcwLDYwMCw4MDAiLCJsaW5lTGFiZWxzIjoiMDEsMDYsMTIsMTgsMjQsMzEsMzciLCJsYWJlbHMiOiJNaW51dGVzJTIwbGFzdCUyMG1vbnRoLE1pbnV0ZXMlMjB0aGlzJTIwbW9udGgiLCJiYWNrZ3JvdW5kQ29sb3IiOiIyNTUxNTMwMDAwLjAsMjEzMjM2MjQzMC41IiwiYm9yZGVyQ29sb3IiOiIxNTUwNzQxNDkxLDAzNjE2MzIwNjEiLCJkaXNhYmxlQ3VydmUiOiIxIn0=' alt="Line chart">
 
-https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,2132362430.5&borderColor=1550741491,0361632061&values=410,400,410,600,400,500,380;380,580,450,430,570,600,800&labels=Minutes%20last%20month,Minutes%20this%20month&lineLabels=01,06,12,18,24,31,37&legend={"display":true,"position":"bottom"}&disableCurve=1&width=700&heigth=400
+```
+var params = {
+  width:700,
+  height:400,
+  legend: {
+    display:true,
+    position:bottom
+  },
+  values:"410,400,410,600,400,500,380;380,580,450,430,570,600,800",
+  lineLabels:"01,06,12,18,24,31,37",
+  labels:"Minutes last month,Minutes this month",
+  backgroundColor:"2551530000.0,2132362430.5",
+  borderColor:"1550741491,0361632061",
+  disableCurve:"1"
+};
+```
+Calculate query param: btoa(JSON.stringify(params))
+
+URL:
+https://chartgenerator.herokuapp.com/charts/line?param=eyJ3aWR0aCI6IjcwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcImJvdHRvbVwifSIsInZhbHVlcyI6IjQxMCw0MDAsNDEwLDYwMCw0MDAsNTAwLDM4MDszODAsNTgwLDQ1MCw0MzAsNTcwLDYwMCw4MDAiLCJsaW5lTGFiZWxzIjoiMDEsMDYsMTIsMTgsMjQsMzEsMzciLCJsYWJlbHMiOiJNaW51dGVzJTIwbGFzdCUyMG1vbnRoLE1pbnV0ZXMlMjB0aGlzJTIwbW9udGgiLCJiYWNrZ3JvdW5kQ29sb3IiOiIyNTUxNTMwMDAwLjAsMjEzMjM2MjQzMC41IiwiYm9yZGVyQ29sb3IiOiIxNTUwNzQxNDkxLDAzNjE2MzIwNjEiLCJkaXNhYmxlQ3VydmUiOiIxIn0=
 
 
 ### Bar Chart
@@ -119,10 +161,24 @@ https://chartgenerator.herokuapp.com/charts/line?backgroundColor=2551530000.0,21
 
 #### Sample:
 
-<img src="https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%20A,op.%20B,op.%20C,op.%20D,op.%20E,op.%20F&barLabel=Percentage%20of%20Votes&backgroundColor=1351271600.2,0661592140.2,1940570400.2,0481701900.2,2261800560.2,0961141270.2&borderColor=1351271601,0661592141,1940570401,0481701901,2261800561,0961141271&borderWidth=1" alt="bar chart">
+<img src="https://chartgenerator.herokuapp.com/charts/bar?param=eyJ3aWR0aCI6IjQwMCIsImhlaWdodCI6IjQwMCIsInZhbHVlcyI6IjMsOSwxMiw1LDcsMyIsImxhYmVscyI6Im9wLiBBLG9wLiBCLG9wLiBDLG9wLiBELG9wLiBFLG9wLiBGIiwiYmFyTGFiZWwiOiJQZXJjZW50YWdlIG9mIFZvdGVzIiwiYmFja2dyb3VuZENvbG9yIjoiMTM1MTI3MTYwMC4yLDA2NjE1OTIxNDAuMiwxOTQwNTcwNDAwLjIsMDQ4MTcwMTkwMC4yLDIyNjE4MDA1NjAuMiwwOTYxMTQxMjcwLjIiLCJib3JkZXJDb2xvciI6IjEzNTEyNzE2MDEsMDY2MTU5MjE0MSwxOTQwNTcwNDAxLDA0ODE3MDE5MDEsMjI2MTgwMDU2MSwwOTYxMTQxMjcxIiwiYm9yZGVyV2lkdGgiOiIxIn0=" alt="bar chart">
 
-https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%20A,op.%20B,op.%20C,op.%20D,op.%20E,op.%20F&barLabel=Percentage%20of%20Votes&backgroundColor=1351271600.2,0661592140.2,1940570400.2,0481701900.2,2261800560.2,0961141270.2&borderColor=1351271601,0661592141,1940570401,0481701901,2261800561,0961141271&borderWidth=1
+```
+var param = {
+  width:400,
+  height:400,
+  values:"3,9,12,5,7,3",
+  labels:"op. A,op. B,op. C,op. D,op. E,op. F",
+  barLabel:"Percentage of Votes",
+  backgroundColor:"1351271600.2,0661592140.2,1940570400.2,0481701900.2,2261800560.2,0961141270.2",
+  borderColor:"1351271601,0661592141,1940570401,0481701901,2261800561,0961141271",
+  borderWidth:1
+};
+```
+Calculate query param: btoa(JSON.stringify(params))
 
+URL:
+https://chartgenerator.herokuapp.com/charts/bar?param=eyJ3aWR0aCI6IjQwMCIsImhlaWdodCI6IjQwMCIsInZhbHVlcyI6IjMsOSwxMiw1LDcsMyIsImxhYmVscyI6Im9wLiBBLG9wLiBCLG9wLiBDLG9wLiBELG9wLiBFLG9wLiBGIiwiYmFyTGFiZWwiOiJQZXJjZW50YWdlIG9mIFZvdGVzIiwiYmFja2dyb3VuZENvbG9yIjoiMTM1MTI3MTYwMC4yLDA2NjE1OTIxNDAuMiwxOTQwNTcwNDAwLjIsMDQ4MTcwMTkwMC4yLDIyNjE4MDA1NjAuMiwwOTYxMTQxMjcwLjIiLCJib3JkZXJDb2xvciI6IjEzNTEyNzE2MDEsMDY2MTU5MjE0MSwxOTQwNTcwNDAxLDA0ODE3MDE5MDEsMjI2MTgwMDU2MSwwOTYxMTQxMjcxIiwiYm9yZGVyV2lkdGgiOiIxIn0=
 
 ### Pie Chart
 
@@ -135,9 +191,39 @@ https://chartgenerator.herokuapp.com/charts/bar?values=3,9,12,5,7,3&labels=op.%2
 
 #### Sample:
 
-<img src='https://chartgenerator.herokuapp.com/charts/pie?values=12,19,33,17,28,24&labels=12%25%20Monday,19%25%20Tuesday,23%25%20Wednesday,17%25%20Thursday,28%25%20Friday,24%25%20Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=600&heigth=400&legend={"display":true,"position":"right","labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}&xAxis={"display":false,"gridLines":{"display":false},"angleLines":{"display":false}}&yAxis={"display":false,"gridLines":{"display":false},"angleLines":{"display":false}}' alt="bar chart">
+<img src='https://chartgenerator.herokuapp.com/charts/pie?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcInJpZ2h0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCJyZ2IoMjMsMjEsMjEsMSlcIixcImZvbnRTdHlsZVwiOlwiYm9sZFwifX0iLCJ4QXhpcyI6IntcImRpc3BsYXlcIjpmYWxzZSxcImdyaWRMaW5lc1wiOntcImRpc3BsYXlcIjpmYWxzZX0sXCJhbmdsZUxpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfX0iLCJ2YWx1ZXMiOiIxMiwxOSwzMywxNywyOCwyNCIsImxhYmVscyI6IjEyJSBNb25kYXksMTklIFR1ZXNkYXksMjMlIFdlZG5lc2RheSwxNyUgVGh1cnNkYXksMjglIEZyaWRheSwyNCUgU2F0dXJkYXkiLCJiYWNrZ3JvdW5kQ29sb3IiOiIwNDYyMDQxMTMxLDA1MjE1MjIxOTEsMTQ5MTY1MTY2MSwxNTUwODkxODIxLDI0MTE5NjAxNTEsMjMxMDc2MDYwMSJ9' alt="bar chart">
 
-https://chartgenerator.herokuapp.com/charts/pie?values=12,19,33,17,28,24&labels=12%25%20Monday,19%25%20Tuesday,23%25%20Wednesday,17%25%20Thursday,28%25%20Friday,24%25%20Saturday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601&width=600&heigth=400&legend={"display":true,"position":"right","labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}&xAxis={"display":false,"gridLines":{"display":false},"angleLines":{"display":false}}&yAxis={"display":false,"gridLines":{"display":false},"angleLines":{"display":false}}
+```
+var param = {
+  width:600,
+  height:400,
+  legend:{
+    display:true,
+    position:"right",
+    labels:{
+      fontSize:15,
+      fontColor:"rgb(23,21,21,1)",
+      fontStyle:"bold"
+    }
+  },
+  xAxis:{
+    display:false,
+    gridLines:{
+      display:false
+    },
+    angleLines:{
+      display:false
+    }
+  },
+  values:"12,19,33,17,28,24",
+  labels:"12% Monday,19% Tuesday,23% Wednesday,17% Thursday,28% Friday,24% Saturday",
+  backgroundColor:"0462041131,0521522191,1491651661,1550891821,2411960151,2310760601"
+}
+```
+Calculate query param: btoa(JSON.stringify(params))
+
+URL:
+https://chartgenerator.herokuapp.com/charts/pie?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcInJpZ2h0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCJyZ2IoMjMsMjEsMjEsMSlcIixcImZvbnRTdHlsZVwiOlwiYm9sZFwifX0iLCJ4QXhpcyI6IntcImRpc3BsYXlcIjpmYWxzZSxcImdyaWRMaW5lc1wiOntcImRpc3BsYXlcIjpmYWxzZX0sXCJhbmdsZUxpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfX0iLCJ2YWx1ZXMiOiIxMiwxOSwzMywxNywyOCwyNCIsImxhYmVscyI6IjEyJSBNb25kYXksMTklIFR1ZXNkYXksMjMlIFdlZG5lc2RheSwxNyUgVGh1cnNkYXksMjglIEZyaWRheSwyNCUgU2F0dXJkYXkiLCJiYWNrZ3JvdW5kQ29sb3IiOiIwNDYyMDQxMTMxLDA1MjE1MjIxOTEsMTQ5MTY1MTY2MSwxNTUwODkxODIxLDI0MTE5NjAxNTEsMjMxMDc2MDYwMSJ9
 
 ### Doughnut Chart
 
@@ -150,10 +236,39 @@ https://chartgenerator.herokuapp.com/charts/pie?values=12,19,33,17,28,24&labels=
 
 #### Sample:
 
-<img src='https://chartgenerator.herokuapp.com/charts/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend={"position":"right"}' alt="doughnut chart">
+<img src='http://chartgenerator.herokuapp.com/charts/doughnut?param=eyJ3aWR0aCI6IjQwMCIsImhlaWdodCI6IjIwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcInJpZ2h0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCIjODA4MDgwXCIsIFwiZm9udFN0eWxlXCI6XCJib2xkXCJ9fSIsInhBeGlzIjoie1wiZGlzcGxheVwiOmZhbHNlLFwiZ3JpZExpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfSxcImFuZ2xlTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9fSIsInZhbHVlcyI6IjU2LDM0LDEwIiwibGFiZWxzIjoiNTYlIEFuZHJvaWQsMzQlIGlPUywxMCUgV2ViIiwiYmFja2dyb3VuZENvbG9yIjoiMDI0MTU0MjAyMSwwMDUwNjQwOTQxLDE5NDAyMTA3NTEifQ==' alt="doughnut chart">
 
-https://chartgenerator.herokuapp.com/charts/doughnut?values=56,34,10&labels=56%25%20Android,34%25%20iOS,10%25%20Web&backgroundColor=0241542021,0050640941,1940210751&width=400&height=200&legend={"position":"right"}
+```
+var param = {
+  width:400,
+  height:200,
+  legend:{
+    display:true,
+    position:"right",
+    labels:{
+      fontSize:15,
+      fontColor:"#808080",
+      fontStyle:"bold"
+    }
+  },
+  xAxis:{
+    display:false,
+    gridLines:{
+      display:false
+    },
+    angleLines:{
+      display:false
+    }
+  },
+  values:"56,34,10",
+  labels":"56% Android,34% iOS,10% Web",
+  backgroundColor:"0241542021,0050640941,1940210751"
+};
+```
+Calculate query param: btoa(JSON.stringify(params))
 
+URL:
+http://chartgenerator.herokuapp.com/charts/doughnut?param=eyJ3aWR0aCI6IjQwMCIsImhlaWdodCI6IjIwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcInJpZ2h0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCIjODA4MDgwXCIsIFwiZm9udFN0eWxlXCI6XCJib2xkXCJ9fSIsInhBeGlzIjoie1wiZGlzcGxheVwiOmZhbHNlLFwiZ3JpZExpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfSxcImFuZ2xlTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9fSIsInZhbHVlcyI6IjU2LDM0LDEwIiwibGFiZWxzIjoiNTYlIEFuZHJvaWQsMzQlIGlPUywxMCUgV2ViIiwiYmFja2dyb3VuZENvbG9yIjoiMDI0MTU0MjAyMSwwMDUwNjQwOTQxLDE5NDAyMTA3NTEifQ==
 
 ### Polar area Chart
 
@@ -167,9 +282,38 @@ https://chartgenerator.herokuapp.com/charts/doughnut?values=56,34,10&labels=56%2
 
 #### Sample:
 
-<img src='https://chartgenerator.herokuapp.com/charts/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend={"position":"left"}' alt="polar area chart">
+<img src='https://chartgenerator.herokuapp.com/charts/polarArea?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcInBvc2l0aW9uXCI6XCJsZWZ0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCIjODA4MDgwXCIsIFwiZm9udFN0eWxlXCI6XCJib2xkXCJ9fSIsInhBeGlzIjoie1wiZGlzcGxheVwiOmZhbHNlLFwiZ3JpZExpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfSxcImFuZ2xlTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9fSIsInZhbHVlcyI6IjEyLDE5LDMsMTcsMjgsMjQsNyIsImxhYmVscyI6Ik1vbmRheSxUdWVzZGF5LFdlZG5lc2RheSxUaHVyc2RheSxGcmlkYXksU2F0dXJkYXksU3VuZGF5IiwiYmFja2dyb3VuZENvbG9yIjoiMDQ2MjA0MTEzMSwwNTIxNTIyMTkxLDE0OTE2NTE2NjEsMTU1MDg5MTgyMSwyNDExOTYwMTUxLDIzMTA3NjA2MDEsMDUyMDczMDk0MSJ9' alt="polar area chart">
 
-https://chartgenerator.herokuapp.com/charts/polarArea?values=12,19,3,17,28,24,7&labels=Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday&backgroundColor=0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941&width=700&heigth=400&legend={"position":"left"}
+```
+var param = {
+  width:600,
+  height:400,
+  legend:{
+    position:"left",
+    labels:{
+      fontSize:15,
+      fontColor:"#808080",
+      fontStyle:"bold"
+    }
+  },
+  xAxis:{
+    display:false,
+    gridLines:{
+      display:false
+    },
+    angleLines:{
+      display:false
+    }
+  },
+  values:"12,19,3,17,28,24,7",
+  labels:"Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
+  backgroundColor:"0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941"
+}
+```
+Calculate query param: btoa(JSON.stringify(params))
+
+URL:
+https://chartgenerator.herokuapp.com/charts/polarArea?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcInBvc2l0aW9uXCI6XCJsZWZ0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCIjODA4MDgwXCIsIFwiZm9udFN0eWxlXCI6XCJib2xkXCJ9fSIsInhBeGlzIjoie1wiZGlzcGxheVwiOmZhbHNlLFwiZ3JpZExpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfSxcImFuZ2xlTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9fSIsInZhbHVlcyI6IjEyLDE5LDMsMTcsMjgsMjQsNyIsImxhYmVscyI6Ik1vbmRheSxUdWVzZGF5LFdlZG5lc2RheSxUaHVyc2RheSxGcmlkYXksU2F0dXJkYXksU3VuZGF5IiwiYmFja2dyb3VuZENvbG9yIjoiMDQ2MjA0MTEzMSwwNTIxNTIyMTkxLDE0OTE2NTE2NjEsMTU1MDg5MTgyMSwyNDExOTYwMTUxLDIzMTA3NjA2MDEsMDUyMDczMDk0MSJ9
 
 ## Testing
 
