@@ -7,21 +7,16 @@ function LineChart(aLogLevel) {
 
   function getData(aReq) {
     let query = aReq.query || {};
-    let lineLabels = chartUtils.getValuesAsArray(query.lineLabels, ',');
-    let valuesAsStr = chartUtils.getValuesAsArray(query.values, ';');
-    let values = [];
-    for (let i = 0, l = valuesAsStr.length; i < l; i++) {
-      values.push(chartUtils.getValuesAsArray(valuesAsStr[i], ','));
-    }
-    let labels = chartUtils.getValuesAsArray(query.labels, ',');
-    let backgroundColor = query.backgroundColor && chartUtils.getColors(query.backgroundColor, '') || [];
-    let borderColor = query.borderColor && chartUtils.getColors(query.borderColor, '') || [];
+    let lineLabels = JSON.parse(query.lineLabels);
+    let values = JSON.parse(query.values);
+    let labels = JSON.parse(query.labels);
+    let backgroundColor = query.backgroundColor && chartUtils.getColors(JSON.parse(query.backgroundColor), '') || [];
+    let borderColor = query.borderColor && chartUtils.getColors(JSON.parse(query.borderColor), '') || [];
     let disableCurve = query.disableCurve || false;
     if (!values || values.length <= 0) {
       logger.error("no values! return null");
       return null;
     }
-
     labels = chartUtils.rectifyArrayLength(labels, values.length, '');
     lineLabels = chartUtils.rectifyArrayLength(lineLabels, values[0].length, '');
 

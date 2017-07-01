@@ -22,16 +22,14 @@ function ChartUtils(aLogLevel) {
 
   function getColors(aValue, aDefaultColor) {
     let colors = [];
-    let strOfColors = aValue.split(',');
-    for (let i = 0, l = strOfColors.length; i < l; i++) {
-      let elem = strOfColors[i];
+    for (let i = 0, l = aValue.length; i < l; i++) {
+      let elem = aValue[i];
       let defaultColor;
       if (aDefaultColor !== undefined) {
         defaultColor = aDefaultColor;
       } else {
         defaultColor = i % 2 ? DEFAULT_COLOR_ODD : DEFAULT_COLOR_EVEN;
       }
-      let aColor = [];
       if (elem.length < 10 || elem.length > 12) {
         colors.push(defaultColor);
         continue;
@@ -62,10 +60,6 @@ function ChartUtils(aLogLevel) {
       newArr = aArr.splice(0, length);
     }
     return newArr;
-  }
-
-  function getValuesAsArray(aValue, aSep) {
-    return aValue && typeof aValue === 'string' && aValue.split(aSep) || [];
   }
 
   function getJSONValue(aValues) {
@@ -122,7 +116,6 @@ function ChartUtils(aLogLevel) {
   return {
     getColors: getColors,
     rectifyArrayLength: rectifyArrayLength,
-    getValuesAsArray: getValuesAsArray,
     getChartOptions: getChartOptions
   };
 }

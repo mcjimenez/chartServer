@@ -8,11 +8,11 @@ function BarChart(aLogLevel) {
 
   function getData(aReq) {
     let query = aReq.query || {};
-    let values = chartUtils.getValuesAsArray(query.values, ',');
-    let labels = chartUtils.getValuesAsArray(query.labels, ',');
+    let values = JSON.parse(query.values);
+    let labels = JSON.parse(query.labels);
     let barLabel = query.barLabel || '';
-    let backgroundColor = query.backgroundColor && chartUtils.getColors(query.backgroundColor) || [];
-    let borderColor = query.borderColor && chartUtils.getColors(query.borderColor) || [];
+    let backgroundColor = query.backgroundColor && chartUtils.getColors(JSON.parse(query.backgroundColor)) || [];
+    let borderColor = query.borderColor && chartUtils.getColors(JSON.parse(query.borderColor)) || [];
     let borderWidth = parseInt(query.borderWidth);
 
     if (!values || values.length <= 0) {

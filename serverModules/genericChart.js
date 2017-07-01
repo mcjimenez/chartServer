@@ -9,9 +9,9 @@ function GenericChart(aLogLevel) {
     let query = aReq.query || {};
     let type = aReq.typeOfChart;
 
-    let labels = chartUtils.getValuesAsArray(query.labels, ',');
-    let backgroundColor = query.backgroundColor && chartUtils.getColors(query.backgroundColor) || [];
-    let values = chartUtils.getValuesAsArray(query.values, ',');
+    let labels = JSON.parse(query.labels);
+    let backgroundColor = query.backgroundColor && chartUtils.getColors(JSON.parse(query.backgroundColor)) || [];
+    let values = JSON.parse(query.values);
 
     if (!values || values.length <= 0) {
       return null;
