@@ -123,7 +123,7 @@ For example:
 
 #### Sample:
 
-<img src='https://chartgenerator.herokuapp.com/charts/line?param=eyJ3aWR0aCI6IjcwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcImJvdHRvbVwifSIsInZhbHVlcyI6IjQxMCw0MDAsNDEwLDYwMCw0MDAsNTAwLDM4MDszODAsNTgwLDQ1MCw0MzAsNTcwLDYwMCw4MDAiLCJsaW5lTGFiZWxzIjoiMDEsMDYsMTIsMTgsMjQsMzEsMzciLCJsYWJlbHMiOiJNaW51dGVzJTIwbGFzdCUyMG1vbnRoLE1pbnV0ZXMlMjB0aGlzJTIwbW9udGgiLCJiYWNrZ3JvdW5kQ29sb3IiOiIyNTUxNTMwMDAwLjAsMjEzMjM2MjQzMC41IiwiYm9yZGVyQ29sb3IiOiIxNTUwNzQxNDkxLDAzNjE2MzIwNjEiLCJkaXNhYmxlQ3VydmUiOiIxIn0=' alt="Line chart">
+<img src='https://chartgenerator.herokuapp.com/charts/line?param=eyJ3aWR0aCI6IjcwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntkaXNwbGF5OnRydWUscG9zaXRpb246XCJib3R0b21cIn0iLCJ2YWx1ZXMiOiJbWzQxMCw0MDAsNDEwLDYwMCw0MDAsNTAwLDM4MF0sWzM4MCw1ODAsNDUwLDQzMCw1NzAsNjAwLDgwMF1dIiwibGluZUxhYmVscyI6IltcIjAxXCIsXCIwNlwiLFwiMTJcIixcIjE4XCIsXCIyNFwiLFwiMzFcIixcIjM3XCJdIiwibGFiZWxzIjoiW1wiTWludXRlcyBsYXN0IG1vbnRoXCIsXCJNaW51dGVzIHRoaXMgbW9udGhcIl0iLCJiYWNrZ3JvdW5kQ29sb3IiOiJbXCIyNTUxNTMwMDAwLjBcIixcIjIxMzIzNjI0MzAuNVwiXSIsImJvcmRlckNvbG9yIjoiW1wiMTU1MDc0MTQ5MVwiLFwiMDM2MTYzMjA2MVwiXSIsImRpc2FibGVDdXJ2ZSI6IjEifQ==' alt="Line chart">
 
 ```
 var params = {
@@ -131,20 +131,20 @@ var params = {
   height:400,
   legend: {
     display:true,
-    position:bottom
+    position:"bottom"
   },
-  values:"410,400,410,600,400,500,380;380,580,450,430,570,600,800",
-  lineLabels:"01,06,12,18,24,31,37",
-  labels:"Minutes last month,Minutes this month",
-  backgroundColor:"2551530000.0,2132362430.5",
-  borderColor:"1550741491,0361632061",
+  values:[[410,400,410,600,400,500,380],[380,580,450,430,570,600,800]],
+  lineLabels:["01","06","12","18","24","31","37"],
+  labels:["Minutes last month","Minutes this month"],
+  backgroundColor:["2551530000.0","2132362430.5"],
+  borderColor:["1550741491","0361632061"],
   disableCurve:"1"
 };
 ```
 Calculate query param: btoa(JSON.stringify(params))
 
 URL:
-https://chartgenerator.herokuapp.com/charts/line?param=eyJ3aWR0aCI6IjcwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcImJvdHRvbVwifSIsInZhbHVlcyI6IjQxMCw0MDAsNDEwLDYwMCw0MDAsNTAwLDM4MDszODAsNTgwLDQ1MCw0MzAsNTcwLDYwMCw4MDAiLCJsaW5lTGFiZWxzIjoiMDEsMDYsMTIsMTgsMjQsMzEsMzciLCJsYWJlbHMiOiJNaW51dGVzJTIwbGFzdCUyMG1vbnRoLE1pbnV0ZXMlMjB0aGlzJTIwbW9udGgiLCJiYWNrZ3JvdW5kQ29sb3IiOiIyNTUxNTMwMDAwLjAsMjEzMjM2MjQzMC41IiwiYm9yZGVyQ29sb3IiOiIxNTUwNzQxNDkxLDAzNjE2MzIwNjEiLCJkaXNhYmxlQ3VydmUiOiIxIn0=
+https://chartgenerator.herokuapp.com/charts/line?param=eyJ3aWR0aCI6IjcwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntkaXNwbGF5OnRydWUscG9zaXRpb246XCJib3R0b21cIn0iLCJ2YWx1ZXMiOiJbWzQxMCw0MDAsNDEwLDYwMCw0MDAsNTAwLDM4MF0sWzM4MCw1ODAsNDUwLDQzMCw1NzAsNjAwLDgwMF1dIiwibGluZUxhYmVscyI6IltcIjAxXCIsXCIwNlwiLFwiMTJcIixcIjE4XCIsXCIyNFwiLFwiMzFcIixcIjM3XCJdIiwibGFiZWxzIjoiW1wiTWludXRlcyBsYXN0IG1vbnRoXCIsXCJNaW51dGVzIHRoaXMgbW9udGhcIl0iLCJiYWNrZ3JvdW5kQ29sb3IiOiJbXCIyNTUxNTMwMDAwLjBcIixcIjIxMzIzNjI0MzAuNVwiXSIsImJvcmRlckNvbG9yIjoiW1wiMTU1MDc0MTQ5MVwiLFwiMDM2MTYzMjA2MVwiXSIsImRpc2FibGVDdXJ2ZSI6IjEifQ==
 
 
 ### Bar Chart
@@ -161,24 +161,24 @@ https://chartgenerator.herokuapp.com/charts/line?param=eyJ3aWR0aCI6IjcwMCIsImhla
 
 #### Sample:
 
-<img src="https://chartgenerator.herokuapp.com/charts/bar?param=eyJ3aWR0aCI6IjQwMCIsImhlaWdodCI6IjQwMCIsInZhbHVlcyI6IjMsOSwxMiw1LDcsMyIsImxhYmVscyI6Im9wLiBBLG9wLiBCLG9wLiBDLG9wLiBELG9wLiBFLG9wLiBGIiwiYmFyTGFiZWwiOiJQZXJjZW50YWdlIG9mIFZvdGVzIiwiYmFja2dyb3VuZENvbG9yIjoiMTM1MTI3MTYwMC4yLDA2NjE1OTIxNDAuMiwxOTQwNTcwNDAwLjIsMDQ4MTcwMTkwMC4yLDIyNjE4MDA1NjAuMiwwOTYxMTQxMjcwLjIiLCJib3JkZXJDb2xvciI6IjEzNTEyNzE2MDEsMDY2MTU5MjE0MSwxOTQwNTcwNDAxLDA0ODE3MDE5MDEsMjI2MTgwMDU2MSwwOTYxMTQxMjcxIiwiYm9yZGVyV2lkdGgiOiIxIn0=" alt="bar chart">
+<img src="https://chartgenerator.herokuapp.com/charts/bar?param=eyJ2YWx1ZXMiOiJbMyw5LDEyLDUsNywzXSIsImxhYmVscyI6IltcIm9wLiBBXCIsXCJvcC4gQlwiLFwib3AuIENcIixcIm9wLiBEXCIsXCJvcC4gRVwiLFwib3AuIEZcIl0iLCJiYXJMYWJlbCI6IlwiUGVyY2VudGFnZSBvZiBWb3Rlc1wiIiwiYmFja2dyb3VuZENvbG9yIjoiW1wiMTM1MTI3MTYwMC4yXCIsXCIwNjYxNTkyMTQwLjJcIixcIjE5NDA1NzA0MDAuMlwiLFwiMDQ4MTcwMTkwMC4yXCIsXCIyMjYxODAwNTYwLjJcIixcIjA5NjExNDEyNzAuMlwiXSIsImJvcmRlckNvbG9yIjoiW1wiMTM1MTI3MTYwMVwiLFwiMDY2MTU5MjE0MVwiLFwiMTk0MDU3MDQwMVwiLFwiMDQ4MTcwMTkwMVwiLFwiMjI2MTgwMDU2MVwiLFwiMDk2MTE0MTI3MVwiXSIsImJvcmRlcldpZHRoIjoiMSJ9" alt="bar chart">
 
 ```
 var param = {
   width:400,
   height:400,
-  values:"3,9,12,5,7,3",
-  labels:"op. A,op. B,op. C,op. D,op. E,op. F",
+  values:[3,9,12,5,7,3],
+  labels:["op. A","op. B","op. C","op. D","op. E","op. F"],
   barLabel:"Percentage of Votes",
-  backgroundColor:"1351271600.2,0661592140.2,1940570400.2,0481701900.2,2261800560.2,0961141270.2",
-  borderColor:"1351271601,0661592141,1940570401,0481701901,2261800561,0961141271",
+  backgroundColor:["1351271600.2","0661592140.2","1940570400.2","0481701900.2","2261800560.2","0961141270.2"],
+  borderColor:["1351271601","0661592141","1940570401","0481701901","2261800561","0961141271"],
   borderWidth:1
 };
 ```
 Calculate query param: btoa(JSON.stringify(params))
 
 URL:
-https://chartgenerator.herokuapp.com/charts/bar?param=eyJ3aWR0aCI6IjQwMCIsImhlaWdodCI6IjQwMCIsInZhbHVlcyI6IjMsOSwxMiw1LDcsMyIsImxhYmVscyI6Im9wLiBBLG9wLiBCLG9wLiBDLG9wLiBELG9wLiBFLG9wLiBGIiwiYmFyTGFiZWwiOiJQZXJjZW50YWdlIG9mIFZvdGVzIiwiYmFja2dyb3VuZENvbG9yIjoiMTM1MTI3MTYwMC4yLDA2NjE1OTIxNDAuMiwxOTQwNTcwNDAwLjIsMDQ4MTcwMTkwMC4yLDIyNjE4MDA1NjAuMiwwOTYxMTQxMjcwLjIiLCJib3JkZXJDb2xvciI6IjEzNTEyNzE2MDEsMDY2MTU5MjE0MSwxOTQwNTcwNDAxLDA0ODE3MDE5MDEsMjI2MTgwMDU2MSwwOTYxMTQxMjcxIiwiYm9yZGVyV2lkdGgiOiIxIn0=
+https://chartgenerator.herokuapp.com/charts/bar?param=eyJ2YWx1ZXMiOiJbMyw5LDEyLDUsNywzXSIsImxhYmVscyI6IltcIm9wLiBBXCIsXCJvcC4gQlwiLFwib3AuIENcIixcIm9wLiBEXCIsXCJvcC4gRVwiLFwib3AuIEZcIl0iLCJiYXJMYWJlbCI6IlwiUGVyY2VudGFnZSBvZiBWb3Rlc1wiIiwiYmFja2dyb3VuZENvbG9yIjoiW1wiMTM1MTI3MTYwMC4yXCIsXCIwNjYxNTkyMTQwLjJcIixcIjE5NDA1NzA0MDAuMlwiLFwiMDQ4MTcwMTkwMC4yXCIsXCIyMjYxODAwNTYwLjJcIixcIjA5NjExNDEyNzAuMlwiXSIsImJvcmRlckNvbG9yIjoiW1wiMTM1MTI3MTYwMVwiLFwiMDY2MTU5MjE0MVwiLFwiMTk0MDU3MDQwMVwiLFwiMDQ4MTcwMTkwMVwiLFwiMjI2MTgwMDU2MVwiLFwiMDk2MTE0MTI3MVwiXSIsImJvcmRlcldpZHRoIjoiMSJ9
 
 ### Pie Chart
 
@@ -191,7 +191,7 @@ https://chartgenerator.herokuapp.com/charts/bar?param=eyJ3aWR0aCI6IjQwMCIsImhlaW
 
 #### Sample:
 
-<img src='https://chartgenerator.herokuapp.com/charts/pie?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcInJpZ2h0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCJyZ2IoMjMsMjEsMjEsMSlcIixcImZvbnRTdHlsZVwiOlwiYm9sZFwifX0iLCJ4QXhpcyI6IntcImRpc3BsYXlcIjpmYWxzZSxcImdyaWRMaW5lc1wiOntcImRpc3BsYXlcIjpmYWxzZX0sXCJhbmdsZUxpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfX0iLCJ2YWx1ZXMiOiIxMiwxOSwzMywxNywyOCwyNCIsImxhYmVscyI6IjEyJSBNb25kYXksMTklIFR1ZXNkYXksMjMlIFdlZG5lc2RheSwxNyUgVGh1cnNkYXksMjglIEZyaWRheSwyNCUgU2F0dXJkYXkiLCJiYWNrZ3JvdW5kQ29sb3IiOiIwNDYyMDQxMTMxLDA1MjE1MjIxOTEsMTQ5MTY1MTY2MSwxNTUwODkxODIxLDI0MTE5NjAxNTEsMjMxMDc2MDYwMSJ9' alt="bar chart">
+<img src='https://chartgenerator.herokuapp.com/charts/pie?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcInBvc2l0aW9uXCI6XCJyaWdodFwiLFwibGFiZWxzXCI6e1wiZm9udFNpemVcIjoxNSxcImZvbnRDb2xvclwiOlwicmdiKDIzLDIxLDIxLDEpXCIsXCJmb250U3R5bGVcIjpcImJvbGRcIn19IiwieEF4aXMiOiJ7XCJkaXNwbGF5XCI6ZmFsc2UsXCJncmlkTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9LFwiYW5nbGVMaW5lc1wiOntcImRpc3BsYXlcIjpmYWxzZX19IiwidmFsdWVzIjoiWzEyLDE5LDMzLDE3LDI4LDI0XSIsImxhYmVscyI6IltcIjEyJSBNb25kYXlcIixcIjE5JSBUdWVzZGF5XCIsXCIyMyUgV2VkbmVzZGF5XCIsXCIxNyUgVGh1cnNkYXlcIixcIjI4JSBGcmlkYXlcIixcIjI0JSBTYXR1cmRheVwiXSIsImJhY2tncm91bmRDb2xvciI6IltcIjA0NjIwNDExMzFcIixcIjA1MjE1MjIxOTFcIixcIjE0OTE2NTE2NjFcIixcIjE1NTA4OTE4MjFcIixcIjI0MTE5NjAxNTFcIixcIjIzMTA3NjA2MDFcIl0ifQ==' alt="bar chart">
 
 ```
 var param = {
@@ -215,15 +215,15 @@ var param = {
       display:false
     }
   },
-  values:"12,19,33,17,28,24",
-  labels:"12% Monday,19% Tuesday,23% Wednesday,17% Thursday,28% Friday,24% Saturday",
-  backgroundColor:"0462041131,0521522191,1491651661,1550891821,2411960151,2310760601"
+  values:[12,19,33,17,28,24],
+  labels:["12% Monday","19% Tuesday","23% Wednesday","17% Thursday","28% Friday","24% Saturday"],
+  backgroundColor:["0462041131","0521522191","1491651661","1550891821","2411960151","2310760601"]
 }
 ```
 Calculate query param: btoa(JSON.stringify(params))
 
 URL:
-https://chartgenerator.herokuapp.com/charts/pie?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcInJpZ2h0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCJyZ2IoMjMsMjEsMjEsMSlcIixcImZvbnRTdHlsZVwiOlwiYm9sZFwifX0iLCJ4QXhpcyI6IntcImRpc3BsYXlcIjpmYWxzZSxcImdyaWRMaW5lc1wiOntcImRpc3BsYXlcIjpmYWxzZX0sXCJhbmdsZUxpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfX0iLCJ2YWx1ZXMiOiIxMiwxOSwzMywxNywyOCwyNCIsImxhYmVscyI6IjEyJSBNb25kYXksMTklIFR1ZXNkYXksMjMlIFdlZG5lc2RheSwxNyUgVGh1cnNkYXksMjglIEZyaWRheSwyNCUgU2F0dXJkYXkiLCJiYWNrZ3JvdW5kQ29sb3IiOiIwNDYyMDQxMTMxLDA1MjE1MjIxOTEsMTQ5MTY1MTY2MSwxNTUwODkxODIxLDI0MTE5NjAxNTEsMjMxMDc2MDYwMSJ9
+https://chartgenerator.herokuapp.com/charts/pie?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcInBvc2l0aW9uXCI6XCJyaWdodFwiLFwibGFiZWxzXCI6e1wiZm9udFNpemVcIjoxNSxcImZvbnRDb2xvclwiOlwicmdiKDIzLDIxLDIxLDEpXCIsXCJmb250U3R5bGVcIjpcImJvbGRcIn19IiwieEF4aXMiOiJ7XCJkaXNwbGF5XCI6ZmFsc2UsXCJncmlkTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9LFwiYW5nbGVMaW5lc1wiOntcImRpc3BsYXlcIjpmYWxzZX19IiwidmFsdWVzIjoiWzEyLDE5LDMzLDE3LDI4LDI0XSIsImxhYmVscyI6IltcIjEyJSBNb25kYXlcIixcIjE5JSBUdWVzZGF5XCIsXCIyMyUgV2VkbmVzZGF5XCIsXCIxNyUgVGh1cnNkYXlcIixcIjI4JSBGcmlkYXlcIixcIjI0JSBTYXR1cmRheVwiXSIsImJhY2tncm91bmRDb2xvciI6IltcIjA0NjIwNDExMzFcIixcIjA1MjE1MjIxOTFcIixcIjE0OTE2NTE2NjFcIixcIjE1NTA4OTE4MjFcIixcIjI0MTE5NjAxNTFcIixcIjIzMTA3NjA2MDFcIl0ifQ==
 
 ### Doughnut Chart
 
@@ -236,7 +236,7 @@ https://chartgenerator.herokuapp.com/charts/pie?param=eyJ3aWR0aCI6IjYwMCIsImhlaW
 
 #### Sample:
 
-<img src='http://chartgenerator.herokuapp.com/charts/doughnut?param=eyJ3aWR0aCI6IjQwMCIsImhlaWdodCI6IjIwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcInJpZ2h0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCIjODA4MDgwXCIsIFwiZm9udFN0eWxlXCI6XCJib2xkXCJ9fSIsInhBeGlzIjoie1wiZGlzcGxheVwiOmZhbHNlLFwiZ3JpZExpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfSxcImFuZ2xlTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9fSIsInZhbHVlcyI6IjU2LDM0LDEwIiwibGFiZWxzIjoiNTYlIEFuZHJvaWQsMzQlIGlPUywxMCUgV2ViIiwiYmFja2dyb3VuZENvbG9yIjoiMDI0MTU0MjAyMSwwMDUwNjQwOTQxLDE5NDAyMTA3NTEifQ==' alt="doughnut chart">
+<img src='https://chartgenerator.herokuapp.com/charts/doughnut?param=eyJ3aWR0aCI6IjQwMCIsImhlaWdodCI6IjIwMCIsImxlZ2VuZCI6IntcInBvc2l0aW9uXCI6XCJyaWdodFwiLFwibGFiZWxzXCI6e1wiZm9udFNpemVcIjoxNSxcImZvbnRDb2xvclwiOlwiIzgwODA4MFwiLFwiZm9udFN0eWxlXCI6XCJib2xkXCJ9fSIsInhBeGlzIjoie1wiZGlzcGxheVwiOmZhbHNlLFwiZ3JpZExpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfSxcImFuZ2xlTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9fSIsInZhbHVlcyI6Ils1NiwzNCwxMF0iLCJsYWJlbHMiOiJbXCI1NiUgQW5kcm9pZFwiLFwiMzQlIGlPU1wiLFwiMTAlIFdlYlwiXSIsImJhY2tncm91bmRDb2xvciI6IltcIjAyNDE1NDIwMjFcIixcIjAwNTA2NDA5NDFcIixcIjE5NDAyMTA3NTFcIl0ifQ==' alt="doughnut chart">
 
 ```
 var param = {
@@ -260,15 +260,15 @@ var param = {
       display:false
     }
   },
-  values:"56,34,10",
-  labels":"56% Android,34% iOS,10% Web",
-  backgroundColor:"0241542021,0050640941,1940210751"
+  values:[56,34,10],
+  labels":["56% Android","34% iOS","10% Web"],
+  backgroundColor:["0241542021","0050640941","1940210751"]
 };
 ```
 Calculate query param: btoa(JSON.stringify(params))
 
 URL:
-http://chartgenerator.herokuapp.com/charts/doughnut?param=eyJ3aWR0aCI6IjQwMCIsImhlaWdodCI6IjIwMCIsImxlZ2VuZCI6IntcImRpc3BsYXlcIjp0cnVlLFwicG9zaXRpb25cIjpcInJpZ2h0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCIjODA4MDgwXCIsIFwiZm9udFN0eWxlXCI6XCJib2xkXCJ9fSIsInhBeGlzIjoie1wiZGlzcGxheVwiOmZhbHNlLFwiZ3JpZExpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfSxcImFuZ2xlTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9fSIsInZhbHVlcyI6IjU2LDM0LDEwIiwibGFiZWxzIjoiNTYlIEFuZHJvaWQsMzQlIGlPUywxMCUgV2ViIiwiYmFja2dyb3VuZENvbG9yIjoiMDI0MTU0MjAyMSwwMDUwNjQwOTQxLDE5NDAyMTA3NTEifQ==
+https://chartgenerator.herokuapp.com/charts/doughnut?param=eyJ3aWR0aCI6IjQwMCIsImhlaWdodCI6IjIwMCIsImxlZ2VuZCI6IntcInBvc2l0aW9uXCI6XCJyaWdodFwiLFwibGFiZWxzXCI6e1wiZm9udFNpemVcIjoxNSxcImZvbnRDb2xvclwiOlwiIzgwODA4MFwiLFwiZm9udFN0eWxlXCI6XCJib2xkXCJ9fSIsInhBeGlzIjoie1wiZGlzcGxheVwiOmZhbHNlLFwiZ3JpZExpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfSxcImFuZ2xlTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9fSIsInZhbHVlcyI6Ils1NiwzNCwxMF0iLCJsYWJlbHMiOiJbXCI1NiUgQW5kcm9pZFwiLFwiMzQlIGlPU1wiLFwiMTAlIFdlYlwiXSIsImJhY2tncm91bmRDb2xvciI6IltcIjAyNDE1NDIwMjFcIixcIjAwNTA2NDA5NDFcIixcIjE5NDAyMTA3NTFcIl0ifQ==
 
 ### Polar area Chart
 
@@ -282,7 +282,7 @@ http://chartgenerator.herokuapp.com/charts/doughnut?param=eyJ3aWR0aCI6IjQwMCIsIm
 
 #### Sample:
 
-<img src='https://chartgenerator.herokuapp.com/charts/polarArea?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcInBvc2l0aW9uXCI6XCJsZWZ0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCIjODA4MDgwXCIsIFwiZm9udFN0eWxlXCI6XCJib2xkXCJ9fSIsInhBeGlzIjoie1wiZGlzcGxheVwiOmZhbHNlLFwiZ3JpZExpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfSxcImFuZ2xlTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9fSIsInZhbHVlcyI6IjEyLDE5LDMsMTcsMjgsMjQsNyIsImxhYmVscyI6Ik1vbmRheSxUdWVzZGF5LFdlZG5lc2RheSxUaHVyc2RheSxGcmlkYXksU2F0dXJkYXksU3VuZGF5IiwiYmFja2dyb3VuZENvbG9yIjoiMDQ2MjA0MTEzMSwwNTIxNTIyMTkxLDE0OTE2NTE2NjEsMTU1MDg5MTgyMSwyNDExOTYwMTUxLDIzMTA3NjA2MDEsMDUyMDczMDk0MSJ9' alt="polar area chart">
+<img src='https://chartgenerator.herokuapp.com/charts/polarArea?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcInBvc2l0aW9uXCI6XCJsZWZ0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCIjODA4MDgwXCIsXCJmb250U3R5bGVcIjpcImJvbGRcIn19IiwieEF4aXMiOiJ7XCJkaXNwbGF5XCI6ZmFsc2UsXCJncmlkTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9LFwiYW5nbGVMaW5lc1wiOntcImRpc3BsYXlcIjpmYWxzZX19IiwidmFsdWVzIjoiWzEyLDE5LDMsMTcsMjgsMjQsN10iLCJsYWJlbHMiOiJbXCJNb25kYXlcIixcIlR1ZXNkYXlcIixcIldlZG5lc2RheVwiLFwiVGh1cnNkYXlcIixcIkZyaWRheVwiLFwiU2F0dXJkYXlcIixcIlN1bmRheVwiXSIsImJhY2tncm91bmRDb2xvciI6IltcIjA0NjIwNDExMzFcIixcIjA1MjE1MjIxOTFcIixcIjE0OTE2NTE2NjFcIixcIjE1NTA4OTE4MjFcIixcIjI0MTE5NjAxNTFcIixcIjIzMTA3NjA2MDFcIixcIjA1MjA3MzA5NDFcIl0ifQ==' alt="polar area chart">
 
 ```
 var param = {
@@ -305,15 +305,15 @@ var param = {
       display:false
     }
   },
-  values:"12,19,3,17,28,24,7",
-  labels:"Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday",
-  backgroundColor:"0462041131,0521522191,1491651661,1550891821,2411960151,2310760601,0520730941"
+  values:[12,19,3,17,28,24,7],
+  labels:["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+  backgroundColor:["0462041131","0521522191","1491651661","1550891821","2411960151","2310760601","0520730941"]
 }
 ```
 Calculate query param: btoa(JSON.stringify(params))
 
 URL:
-https://chartgenerator.herokuapp.com/charts/polarArea?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcInBvc2l0aW9uXCI6XCJsZWZ0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCIjODA4MDgwXCIsIFwiZm9udFN0eWxlXCI6XCJib2xkXCJ9fSIsInhBeGlzIjoie1wiZGlzcGxheVwiOmZhbHNlLFwiZ3JpZExpbmVzXCI6e1wiZGlzcGxheVwiOmZhbHNlfSxcImFuZ2xlTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9fSIsInZhbHVlcyI6IjEyLDE5LDMsMTcsMjgsMjQsNyIsImxhYmVscyI6Ik1vbmRheSxUdWVzZGF5LFdlZG5lc2RheSxUaHVyc2RheSxGcmlkYXksU2F0dXJkYXksU3VuZGF5IiwiYmFja2dyb3VuZENvbG9yIjoiMDQ2MjA0MTEzMSwwNTIxNTIyMTkxLDE0OTE2NTE2NjEsMTU1MDg5MTgyMSwyNDExOTYwMTUxLDIzMTA3NjA2MDEsMDUyMDczMDk0MSJ9
+https://chartgenerator.herokuapp.com/charts/polarArea?param=eyJ3aWR0aCI6IjYwMCIsImhlaWdodCI6IjQwMCIsImxlZ2VuZCI6IntcInBvc2l0aW9uXCI6XCJsZWZ0XCIsXCJsYWJlbHNcIjp7XCJmb250U2l6ZVwiOjE1LFwiZm9udENvbG9yXCI6XCIjODA4MDgwXCIsXCJmb250U3R5bGVcIjpcImJvbGRcIn19IiwieEF4aXMiOiJ7XCJkaXNwbGF5XCI6ZmFsc2UsXCJncmlkTGluZXNcIjp7XCJkaXNwbGF5XCI6ZmFsc2V9LFwiYW5nbGVMaW5lc1wiOntcImRpc3BsYXlcIjpmYWxzZX19IiwidmFsdWVzIjoiWzEyLDE5LDMsMTcsMjgsMjQsN10iLCJsYWJlbHMiOiJbXCJNb25kYXlcIixcIlR1ZXNkYXlcIixcIldlZG5lc2RheVwiLFwiVGh1cnNkYXlcIixcIkZyaWRheVwiLFwiU2F0dXJkYXlcIixcIlN1bmRheVwiXSIsImJhY2tncm91bmRDb2xvciI6IltcIjA0NjIwNDExMzFcIixcIjA1MjE1MjIxOTFcIixcIjE0OTE2NTE2NjFcIixcIjE1NTA4OTE4MjFcIixcIjI0MTE5NjAxNTFcIixcIjIzMTA3NjA2MDFcIixcIjA1MjA3MzA5NDFcIl0ifQ==
 
 ## Testing
 

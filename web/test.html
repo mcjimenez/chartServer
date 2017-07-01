@@ -18,51 +18,51 @@
       <span>Parameters for all charts</span>
       <div id="genericParameters">
         <input type='text' id='sharedSecret' name='sharedSecret' value='' class="input-medium" placeholder='Shared Secret'/>
-        <input type="text" name="width" value="" class="input-short" placeholder="Width"/>
-        <input type="text" name="height" value="" class="input-short" placeholder="Height"/>
-        <input type="text" name="legend" value="" class="json input-json" value="" placeholder='Legend - JSON keys:{display:[true|false], position:[top|left|bottom|right], labels:{fontSize, fontStyle, fontColor:eg:"rgb(23,21,21,1)", fontFamily}}'/>
-        <input type="text" name="xAxis" value="" class="json input-json" placeholder="xAxis - JSON keys:{display,position,gridLines:{display,color,drawTicks,lineWidth,zeroLineColor,zeroLineWidth},ticks:{min,max,stepSize,display,fontColor,fontFamily,fontSize,fontStyle}}}"/>
-        <input type="text" name="yAxis" value="" class="json input-json" placeholder="yAxis - JSON keys: same as xAxis"/>
+        <input type="text" name="width" value="600" class="input-short" placeholder="Width"/>
+        <input type="text" name="height" value="400" class="input-short" placeholder="Height"/>
+        <input type="text" name="legend" value="" class="json input-json" value='{"position":"right","labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}' placeholder='Legend - JSON keys:{display:[true|false], position:[top|left|bottom|right], labels:{fontSize, fontStyle, fontColor:eg:"rgb(23,21,21,1)", fontFamily}}'/>
+        <input type="text" name="xAxis" value='{"display":false,"gridLines":{"display":false},"angleLines":{"display":false}}' class="json input-json" placeholder="xAxis - JSON keys:{display,position,gridLines:{display,color,drawTicks,lineWidth,zeroLineColor,zeroLineWidth},ticks:{min,max,stepSize,display,fontColor,fontFamily,fontSize,fontStyle}}}"/>
+        <input type="text" name="yAxis" value="" class="json input-json" placeholder="yAxis - JSON keys:{display,position,gridLines:{display,color,drawTicks,lineWidth,zeroLineColor,zeroLineWidth},ticks:{min,max,stepSize,display,fontColor,fontFamily,fontSize,fontStyle}}}"/>
       </div>
       <div class="chartInputs" id="line">
         <span>Line chart parameters</span>
         <br/>
-        <input type="text" name="values" value="" class="input-list" placeholder="Values [required] - Comma (',') separated list of points"/>
-        <input type="text" name="lineLabels" value="" class="input-list" placeholder="LineLabels - Comma (',') separated list of labels of the abscissa axis"/>
-        <input type="text" name="labels" value="" class="input-list" placeholder="Labels - Comma (',') separated list of labels for each line"/>
-        <input type="text" name="backgroundColor" value="" class="input-list" placeholder="BackgroundColor - Color to paint under the line. List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
-        <input type="text" name="borderColor" value="" class="input-list" placeholder="BorderColor - Color of the line that link the dots. List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
-        <input type="text" name="disableCurve" value="" class="input-medium" placeholder="DisableCurve - Set any value for plain lines"/>
+        <input type="text" name="values" value='[[410,400,410,600,400,500,380],[380,580,450,430,570,600,800]]' class="input-list" placeholder="Values [required] - Array of points"/>
+        <input type="text" name="lineLabels" value='["01","06","12","18","24","31","37"]' class="input-list" placeholder="LineLabels - Array of labels of the abscissa axis"/>
+        <input type="text" name="labels" value='["Minutes last month","Minutes this month"]' class="input-list" placeholder="Labels - Array of labels for each line"/>
+        <input type="text" name="backgroundColor" value='["2551530000.0","2132362430.5"]' class="input-list" placeholder="BackgroundColor - Color to paint under the line. Array of values. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+        <input type="text" name="borderColor" value='["1550741491","0361632061"]' class="input-list" placeholder="BorderColor - Color of the line that link the dots. Array of values. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+        <input type="text" name="disableCurve" value="1" class="input-medium" placeholder="DisableCurve - Set any value for plain lines"/>
       </div>
       <div class="chartInputs" id="bar">
         <span>Bar chart parameters</span>
         <br/>
-        <input type="text" name="values" value="" class="input-list" placeholder="Values [required] - Comma (',') separated list of values, a value per bar."/>
-        <input type="text" name="labels" value="" class="input-list" placeholder="Labels - Comma separated list (',') of labels for the bars (a label per var)."/>
-        <input type="text" name="barLabel" value="" class="input-list" placeholder="BarLabel - Title of the chart"/>
-        <input type="text" name="backgroundColor" value="" class="input-list" placeholder="BackgroundColor - List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
-        <input type="text" name="borderColor" value="" class="input-list" placeholder="BorderColor - Comma separated list (',') of colors for the borders of the bar"/>
-        <input type="text" name="borderWidth" value="" class="input-medium" placeholder="BorderWidth"/>
+        <input type="text" name="values" value='[3,9,12,5,7,3]' class="input-list" placeholder="Values [required] - Array of values, a value per bar."/>
+        <input type="text" name="labels" value='["op. A","op. B","op. C","op. D","op. E","op. F"]' class="input-list" placeholder="Labels - Array of labels for the bars (a label per var)."/>
+        <input type="text" name="barLabel" value="Percentage of Votes" class="input-list" placeholder="BarLabel - Title of the chart"/>
+        <input type="text" name="backgroundColor" value='["1351271600.2","0661592140.2","1940570400.2","0481701900.2","2261800560.2","0961141270.2"]' class="input-list" placeholder="BackgroundColor - Array of values. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+        <input type="text" name="borderColor" value='["1351271601","0661592141","1940570401","0481701901","2261800561","0961141271"]' class="input-list" placeholder="BorderColor - Array of colors for the borders of the bar"/>
+        <input type="text" name="borderWidth" value="1" class="input-medium" placeholder="BorderWidth"/>
       </div>
       <div class="chartInputs" id="pie">
         <span>Pie chart parameters</span>
         <br/>
-        <input type="text" name="values" value="" class="input-list" placeholder="Values [required] - Comma separated list (',') of the values for each section of the pie"/>
-        <input type="text" name="labels" value="" class="input-list" placeholder="Labels - Comma separated list (',') of name for each of the pie section"/>
-        <input type="text" name="backgroundColor" class="input-list" value="" placeholder="BackgroundColor - List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+        <input type="text" name="values" value="[12,19,33,17,28,24]" class="input-list" placeholder="Values [required] - Array of the values for each section of the pie"/>
+        <input type="text" name="labels" value='["12% Monday","19% Tuesday","23% Wednesday","17% Thursday","28% Friday","24% Saturday"]' class="input-list" placeholder="Labels - Array of name for each of the pie section"/>
+        <input type="text" name="backgroundColor" class="input-list" value='["0462041131","0521522191","1491651661","1550891821","2411960151","2310760601"]' placeholder="BackgroundColor - Array of values. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
       </div>
       <div class="chartInputs" id="polarArea">
         <span>PolarArea chart parameters</span>
         <br/>
-        <input type="text" name="values" value="" class="input-list" placeholder="Values [required] - Comma separated list (',') of values for each section."/>
-        <input type="text" name="labels" value="" class="input-list" placeholder="Labels - Comma separated list (',') of name for each section"/>
-        <input type="text" name="backgroundColor" class="input-list" value="" placeholder="BackgroundColor - List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+        <input type="text" name="values" value='[12,19,3,17,28,24,7]' class="input-list" placeholder="Values [required] - Array of values for each section."/>
+        <input type="text" name="labels" value='["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]' class="input-list" placeholder="Labels - Array of name for each section"/>
+        <input type="text" name="backgroundColor" class="input-list" value='["0462041131","0521522191","1491651661","1550891821","2411960151","2310760601","0520730941"]' placeholder="BackgroundColor - Array of values. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
       </div>
       <div class="chartInputs" id="doughnut">
         <span>Doughnut chart parameters</span>
-        <input type="text" name="values" value="" class="input-list" placeholder="Values [required] - Comma separated list (',') of values for each section"/>
-        <input type="text" name="labels" value="" class="input-list" placeholder="Labels - Comma separated list (',') of name for each section"/>
-        <input type="text" name="backgroundColor" class="input-list" value="" placeholder="BackgroundColor - List of values, comma separated. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
+        <input type="text" name="values" class="input-list" value='[56,34,10]' placeholder="Values [required] - Array of values for each section"/>
+        <input type="text" name="labels" class="input-list" value='["56% Android","34% iOS","10% Web"]' placeholder="Labels - Array of name for each section"/>
+        <input type="text" name="backgroundColor" class="input-list" value='["0241542021","0050640941","1940210751"]' placeholder="BackgroundColor - Array of values. RGBAlpha in B10 (#189ACA with an alpha of 0.4 will be 0241542020.4)"/>
       </div>
       <footer>
         <button id='sendParams' class="btn" type='submit'>Generate ></button>
