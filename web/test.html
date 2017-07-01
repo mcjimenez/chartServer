@@ -20,7 +20,7 @@
         <input type='text' id='sharedSecret' name='sharedSecret' value='' class="input-medium" placeholder='Shared Secret'/>
         <input type="text" name="width" value="600" class="input-short" placeholder="Width"/>
         <input type="text" name="height" value="400" class="input-short" placeholder="Height"/>
-        <input type="text" name="legend" value="" class="json input-json" value='{"position":"right","labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}' placeholder='Legend - JSON keys:{display:[true|false], position:[top|left|bottom|right], labels:{fontSize, fontStyle, fontColor:eg:"rgb(23,21,21,1)", fontFamily}}'/>
+        <input type="text" name="legend" value='{"position":"right","labels":{"fontSize":15,"fontColor":"rgb(23,21,21,1)","fontStyle":"bold"}}' class="json input-json" placeholder='Legend - JSON keys:{display:[true|false], position:[top|left|bottom|right], labels:{fontSize, fontStyle, fontColor:eg:"rgb(23,21,21,1)", fontFamily}}'/>
         <input type="text" name="xAxis" value='{"display":false,"gridLines":{"display":false},"angleLines":{"display":false}}' class="json input-json" placeholder="xAxis - JSON keys:{display,position,gridLines:{display,color,drawTicks,lineWidth,zeroLineColor,zeroLineWidth},ticks:{min,max,stepSize,display,fontColor,fontFamily,fontSize,fontStyle}}}"/>
         <input type="text" name="yAxis" value="" class="json input-json" placeholder="yAxis - JSON keys:{display,position,gridLines:{display,color,drawTicks,lineWidth,zeroLineColor,zeroLineWidth},ticks:{min,max,stepSize,display,fontColor,fontFamily,fontSize,fontStyle}}}"/>
       </div>
