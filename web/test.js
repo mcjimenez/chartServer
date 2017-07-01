@@ -12,7 +12,7 @@
   var urlResultInput;
   var chartImg;
 
-  const HOST = 'http://localhost:8126';
+  const HOST = document.location.origin;
 
   const URLS = {
     'line': HOST + '/charts/line',

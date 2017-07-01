@@ -51,7 +51,7 @@ where:
   - authValue: SHA256 HMAC using the shared secret as key, and paramValue as the value, that is:
 `auth = hmacSha256(paramValue, sharedSecret)`
 
-You can find an example page for generating requests on the clientTest directory.
+You can find an example page for generating requests on the web directory.
 
 If authorization is enabled, all the requests that don't pase the right authorization value will
 not be executed, and a 401 error will be returned instead.
