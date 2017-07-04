@@ -114,11 +114,12 @@ For example:
 #### URL: /charts/line
 
 #### Parameters
-  - backgroundColor: Color to paint under the line. If you don't want to fill with any color, just specify any color with an alpha of 0.0. You have to specify as many colors as lines you're going to generate, separated with commas ','
-  - borderColor: Color of the line that link the dots. You have to specify as many colors (comma ',' separated) as lines you are going to generate
-  - labels: Comma (',') separated list of labels for each line
-  - values: Comma (',') separated list of points in the chart. If more than one line must be generated, separete the list of points for each line with semi colons (';')
-  - lineLabels: Comma (',') separated list of labels of the abscissa axis
+  - backgroundColor: Color to paint under the line. If you don't want to fill with any color, just specify any color with an alpha of 0.0. You have to specify an array with as many colors as lines you're going to generate.
+  - borderColor: Color of the line that link the dots. You have to specify an array with as many colors as lines you are going to generate
+  - labels: Array of labels for each line
+  - values: Values is an array with the points of all the lines that must be generated. Each element of the array is itself an array of points for a line. The values array must have as many
+  arrays as lines that you want to generate.
+  - lineLabels: Array of labels of the abscissa axis
   - disableCurve: If this parameter is included (the value doesn't matter), the lines will be generated as plain lines between each data point. Otherwise, a spline (curve) will be generated.
 
 #### Sample:
@@ -152,11 +153,11 @@ https://chartgenerator.herokuapp.com/charts/line?param=eyJ3aWR0aCI6IjcwMCIsImhla
 #### URL: /charts/bar
 
 #### Parameters
-  - value: Comma separated list (',') of values, a value per bar.
-  - label: Comma separated list (',') of labels for the bars (a label per var).
+  - value: Array of values, a value per bar.
+  - label: Array of labels for the bars (a label per bar).
   - barLabel: Title of the chart
-  - backgroundColor: Comma separated list (',') of colors of each bar.
-  - borderColor: Comma separated list (',') of colors for the borders of the bar, one color per bar.
+  - backgroundColor: Array of colors of each bar.
+  - borderColor: Array of colors for the borders of the bar, one color per bar.
   - borderWidth: Size of the borders for all the bars.
 
 #### Sample:
@@ -185,9 +186,9 @@ https://chartgenerator.herokuapp.com/charts/bar?param=eyJ2YWx1ZXMiOiJbMyw5LDEyLD
 #### URL: /charts/pie
 
 #### Parameters
-  - values: Comma separated list (',') of the values for each section of the pie.
-  - labels: Comma separated list (',') of name for each of the pie section.
-  - backgroundColor: Comma separated list (',') of the colors for each of the pie section.
+  - values: Array of the values for each section of the pie.
+  - labels: Array of names for each of the pie sections.
+  - backgroundColor: Array of the colors for each of the pie sections.
 
 #### Sample:
 
@@ -230,9 +231,9 @@ https://chartgenerator.herokuapp.com/charts/pie?param=eyJ3aWR0aCI6IjYwMCIsImhlaW
 #### URL: /charts/doughnut
 
 #### Parameters
-  - values: Comma separated list (',') of values for each section of the doughnut.
-  - labels: Comma separated list (',')  of name for each of the doughnut section.
-  - backgroundColor: Comma separated list (',') of the colors for each of the doughnut section.
+  - values: Array of values for each section of the doughnut.
+  - labels: Array of names for each of the doughnut sections.
+  - backgroundColor: Array of the colors for each of the doughnut sections.
 
 #### Sample:
 
@@ -276,9 +277,9 @@ https://chartgenerator.herokuapp.com/charts/doughnut?param=eyJ3aWR0aCI6IjQwMCIsI
 
 #### Parameters
 
-  - values: Comma separated list (',') of values for each section of the area.
-  - labels: Comma separated list (',') of name for each of the polar area section.
-  - backgroundColor: Comma separated list (',') of the colors for each of the polar area section.
+  - values: Array of values for each section of the area.
+  - labels: Array of names for each of the polar area sections.
+  - backgroundColor: Array of the colors for each of the polar area sections.
 
 #### Sample:
 
