@@ -25,7 +25,7 @@ function Validator(aLogLevel) {
 
     var auth = cryptUtils.getAuthToken(paramB64, sharedSecret);
 
-    return auth === authRec;
+    return auth.toLowerCase() === authRec.toLowerCase();
   }
 
   return {
