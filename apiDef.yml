@@ -198,6 +198,30 @@ paths:
           description: Correct result
           schema:
             $ref: '#/definitions/HTML'
+  /api/v1/users:
+    get:
+      summary: Prueba para movistarHome request User
+      x-implemented-in: getUserMovistarHome
+      description: Prueba para movistarHome request User
+      parameters:
+        - name: phone
+          description: Phone number
+          in: query
+          required: true
+          type: string
+      tags:
+        - Something
+      produces:
+        - text/html
+      responses:
+        '200':
+          description: Correct result
+          schema:
+            $ref: '#/definitions/HTML'
+        '503':
+          description: Service Temporarily Unavailable
+          schema:
+            $ref: '#/definictions/HTML'
 definitions:
   SomeResult:
     type: object
